@@ -1,0 +1,6 @@
+ .DS_Store
+ projectX/.DS_Store
+ projectX/app1/.gitignore
+ projectX/app2/.gitattributes
+ projectX/app2/.gitignore
+
