@@ -2,12 +2,9 @@
 frontend -react,ts
 backend -spring booot
 ## overview of usecase
-- student in a website read an article and she likes the line 200 very much
-- but she did not count the line no ,and want the friend to go to directly to that line
-- user can user come to my site , paste the url ,scroll to the desired line
-- it will generate a unique my_url/random_word
-- user gives this to frnd,they paste it in my site
-- it will open site in a new tab or same tab and scrolls to the desired line by say find Element
+- a website in which user can post anything could be spcicific to a village,country,food,technology,person ....
+- the one who initially creates own the enpoint, it could be password protected
+- the latest data will always comes firstll
 
 ## additionals
 - inclusion of subscriptions 
@@ -18,7 +15,7 @@ backend -spring booot
 ## backend
 specifications,jpa/hibernate,global exception handling,facktory jobs,mappers,dtos,flyway(data base automatic creation,migrtion entries,bootstrap automatically),orm,(hiberante,spring data jpa),entityListener(pre persist,post persist,auditingEntityListener),actuator,prometheus,authentication filters,annotations with audit history
 - https://stackoverflow.com/questions/28646332/how-does-the-spring-responsebody-annotation-work,extending a base class for each class,
-/Users/radha.mounika/work/testsigma/web_app/src/main/java/com/testsigma/model/execution/TestSuite.java discriminator value
+/Users/radha.mounika/work/testsigma/web_app/src/main/java/com/testsigma/model/execution/TestSuite.java discriminator value,log4j2,context setting(just like tenant context)
 ## frontend
 vite,package json scripts,a file to make api calls(separation of concerns),custom hooks,run  build(dist folders),useForm hook,yup resovler to make components,husky(prettier),story books,jest tests,post css plugins
 - tailwind ,ts,vit configs
@@ -27,3 +24,5 @@ vite,package json scripts,a file to make api calls(separation of concerns),custo
 - .env file
 - eslint,prettier,prettier ignore
 - pr template 
+- httpd config to map the port so that we dont need to type localhost
+- redis
