@@ -10,6 +10,7 @@ import com.m0wn1la.app2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,8 +22,8 @@ public class UserController {
     private final UserMapper userMapper;
 
     @RequestMapping( method = RequestMethod.GET)
-    public String index() {
-        return "Hello World123456!";
+    public Page<UserDTO> index() {
+        return userService.findAllUsers();
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "/{id}")

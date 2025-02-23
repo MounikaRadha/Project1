@@ -9,6 +9,8 @@ import com.m0wn1la.app2.request.UserCreateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,5 +34,12 @@ public class UserService {
       User user=  userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Couldn't find TestCase resource with id:" + id));
       return userMapper.userToUserDTO(user);
+    }
+
+    public Page<UserDTO> findAllUsers() {
+        log.debug("finding all users");
+        Pageable pageable=Pageable.ofSize(2);
+        Page<User> users = userRepository.findAll(pageable);
+        return users.map(userMapper::userToUserDTO);
     }
 }
