@@ -26,11 +26,15 @@ public class UserController {
         return userService.findAllUsers();
     }
 
-    @RequestMapping(method = RequestMethod.GET,path = "/{id}")
+    @RequestMapping(method = RequestMethod.GET,path = "/findById/{id}")
     public UserDTO get(@PathVariable("id") Long id) throws ResourceNotFoundException {
     return userService.getUser(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET,path ="/findByName/{user_name}")
+    public Page<UserDTO> get(@PathVariable("user_name") String userName) {
+        return userService.findByUserName(userName);
+    }
     @RequestMapping(path = "/create_new", method = RequestMethod.POST)
     public UserDTO createUntitledTestCase(@RequestBody UserCreateRequest request){
         return userService.create(request);

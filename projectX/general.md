@@ -12,6 +12,9 @@
 - https://medium.com/@khairmuhammadmemon/spring-boot-data-access-with-spring-data-jpa-and-mysql-afe90e28b05d
 - https://www.baeldung.com/mapstruct
 - https://github.com/spring-petclinic/spring-petclinic-rest/issues/65
+- https://medium.com/@dulanjayasandaruwan1998/pagination-with-spring-boot-566448c12c95
+- https://medium.com/@mikecode/pagination-with-spring-data-jpa-spring-boot-b89c48ce723d
+- https://medium.com/hprog99/mastering-spring-data-jpa-specifications-for-robust-data-access-24e7626d169a
 ## db
 - https://stackoverflow.com/questions/28719531/why-setting-a-collation-for-utf8-text-data-in-mysql
 - https://medium.com/@burakkocakeu/in-spring-data-jpa-onetomany-what-are-these-fields-mappedby-fetch-cascade-and-orphanremoval-2655f4027c4f

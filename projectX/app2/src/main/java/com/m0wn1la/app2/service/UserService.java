@@ -6,6 +6,7 @@ import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.repository.UserRepository;
 import com.m0wn1la.app2.request.UserCreateRequest;
+import com.m0wn1la.app2.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,11 @@ public class UserService {
         Pageable pageable=Pageable.ofSize(2);
         Page<User> users = userRepository.findAll(pageable);
         return users.map(userMapper::userToUserDTO);
+    }
+
+    public Page<UserDTO> findByUserName(String userName) {
+        Pageable pageable=Pageable.ofSize(2);
+        Page<User> users=userRepository.findAll(UserSpecification.findByUsername(userName),pageable);
+       return users.map(userMapper::userToUserDTO);
     }
 }
