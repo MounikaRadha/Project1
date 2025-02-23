@@ -1,19 +1,20 @@
 package com.m0wn1la.app2.service;
 
+import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.repository.UserRepository;
-import com.m0wn1la.app2.request.UserCreateRequest;
+import com.m0wn1la.app2.request.UserPostRequest;
 import com.m0wn1la.app2.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -21,7 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    public UserDTO create(UserCreateRequest request) {
+
+    public UserDTO create(UserPostRequest request) {
         log.debug("creating a new user");
         User user = new User();
         user.setUserName(request.getUsername());
@@ -31,22 +33,35 @@ public class UserService {
 
     }
 
-    public UserDTO getUser(Long id) throws ResourceNotFoundException {
+    public UserDTO getUserById(Long id) throws ResourceNotFoundException {
       User user=  userRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Couldn't find TestCase resource with id:" + id));
+                () -> new ResourceNotFoundException("Couldn't find user resource with id:" + id));
       return userMapper.userToUserDTO(user);
     }
 
-    public Page<UserDTO> findAllUsers() {
+    public Page<UserDTO> findAllUsers(int pageNumber,int pageSize) {
         log.debug("finding all users");
-        Pageable pageable=Pageable.ofSize(2);
+        Pageable pageable= PageRequest.of(pageNumber,pageSize);
         Page<User> users = userRepository.findAll(pageable);
         return users.map(userMapper::userToUserDTO);
     }
 
     public Page<UserDTO> findByUserName(String userName) {
-        Pageable pageable=Pageable.ofSize(2);
+        Pageable pageable=Pageable.ofSize(DefaultValues.DEFAULT_PAGE_SIZE);
         Page<User> users=userRepository.findAll(UserSpecification.findByUsername(userName),pageable);
        return users.map(userMapper::userToUserDTO);
+    }
+
+    public UserDTO updateUser(Long userId, UserPostRequest request) throws ResourceNotFoundException {
+        User user=userRepository.findById(userId).orElseThrow(
+                ()->new ResourceNotFoundException("Could not find user with id: "+userId)
+        );
+        userMapper.mergeUserPostRequestToUser(request,user);
+        userRepository.save(user);
+        return userMapper.userToUserDTO(user);
+    }
+
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 }

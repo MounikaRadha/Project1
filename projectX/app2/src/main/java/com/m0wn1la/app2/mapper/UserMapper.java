@@ -2,6 +2,7 @@ package com.m0wn1la.app2.mapper;
 
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.model.User;
+import com.m0wn1la.app2.request.UserPostRequest;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
@@ -10,4 +11,7 @@ import org.mapstruct.*;
 public interface UserMapper {
     @Mapping(target = "username" ,source = "userName")
     UserDTO userToUserDTO(User user);
+
+    @Mapping(target = "userName" ,source = "username")
+    void mergeUserPostRequestToUser(UserPostRequest request, @MappingTarget  User user);
 }
