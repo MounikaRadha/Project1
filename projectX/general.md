@@ -10,6 +10,8 @@
 - https://ujjwalkhatri.medium.com/how-to-make-the-spring-boot-application-auto-start-after-code-changes-in-intellij-idea-1a310d611ca8
 - https://medium.com/jpa-java-persistence-api-guide/hibernate-mappedsuperclass-for-inheritance-b65a753eb5a5
 - https://medium.com/@khairmuhammadmemon/spring-boot-data-access-with-spring-data-jpa-and-mysql-afe90e28b05d
+- https://www.baeldung.com/mapstruct
+- https://github.com/spring-petclinic/spring-petclinic-rest/issues/65
 ## db
 - https://stackoverflow.com/questions/28719531/why-setting-a-collation-for-utf8-text-data-in-mysql
 - https://medium.com/@burakkocakeu/in-spring-data-jpa-onetomany-what-are-these-fields-mappedby-fetch-cascade-and-orphanremoval-2655f4027c4f
