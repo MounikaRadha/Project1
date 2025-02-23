@@ -9,9 +9,10 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface UserMapper {
-    @Mapping(target = "username" ,source = "userName")
+    @Mapping(target = "username", source = "userName")
+    @Mapping(target = "endPointDTOWithUserDTOS",source = "endPoints")
     UserDTO userToUserDTO(User user);
 
-    @Mapping(target = "userName" ,source = "username")
-    void mergeUserPostRequestToUser(UserPostRequest request, @MappingTarget  User user);
+    @Mapping(target = "userName", source = "username")
+    void mergeUserPostRequestToUser(UserPostRequest request, @MappingTarget User user);
 }

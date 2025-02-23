@@ -33,17 +33,18 @@ public class UserService {
 
     }
 
-    public UserDTO getUserById(Long id) throws ResourceNotFoundException {
-      User user=  userRepository.findById(id).orElseThrow(
+    public User getUserById(Long id) throws ResourceNotFoundException {
+  return userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Couldn't find user resource with id:" + id));
-      return userMapper.userToUserDTO(user);
+
     }
 
     public Page<UserDTO> findAllUsers(int pageNumber,int pageSize) {
         log.debug("finding all users");
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
         Page<User> users = userRepository.findAll(pageable);
-        return users.map(userMapper::userToUserDTO);
+        Page<UserDTO> users1= users.map(user -> userMapper.userToUserDTO(user));
+        return users1;
     }
 
     public Page<UserDTO> findByUserName(String userName) {

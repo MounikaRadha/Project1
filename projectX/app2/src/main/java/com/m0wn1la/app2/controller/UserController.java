@@ -4,6 +4,7 @@ import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
+import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.request.UserPostRequest;
 import com.m0wn1la.app2.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(PrivateURLConstants.USERS)
 public class UserController {
     private final UserService userService;
+    private final UserMapper userMapper;
 
-    @RequestMapping(method = RequestMethod.POST ,path = "/create_new")
-    public UserDTO createUntitledTestCase(@RequestBody UserPostRequest request) {
+    @RequestMapping(method = RequestMethod.POST )
+    public UserDTO createUser(@RequestBody UserPostRequest request) {
         return userService.create(request);
     }
 
@@ -32,7 +34,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public UserDTO getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
-        return userService.getUserById(id);
+        return userMapper.userToUserDTO(userService.getUserById(id));
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/findByName/{user_name}")

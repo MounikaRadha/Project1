@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity(name = "posted_by")
 public class PostedData extends BaseEntity {
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "end_points", referencedColumnName = "id")
     public EndPoint endPoint;
     @ManyToOne
