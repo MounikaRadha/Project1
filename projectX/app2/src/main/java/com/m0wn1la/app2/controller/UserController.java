@@ -2,6 +2,7 @@ package com.m0wn1la.app2.controller;
 
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.UserDTO;
+import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.request.UserCreateRequest;
@@ -9,10 +10,7 @@ import com.m0wn1la.app2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Log4j2
@@ -26,10 +24,15 @@ public class UserController {
     public String index() {
         return "Hello World123456!";
     }
+
+    @RequestMapping(method = RequestMethod.GET,path = "/{id}")
+    public UserDTO get(@PathVariable("id") Long id) throws ResourceNotFoundException {
+    return userService.getUser(id);
+    }
+
     @RequestMapping(path = "/create_new", method = RequestMethod.POST)
     public UserDTO createUntitledTestCase(@RequestBody UserCreateRequest request){
-         User user=userService.create(request);
-         return userMapper.userToUserDTO(user);
+        return userService.create(request);
 
     }
 }
