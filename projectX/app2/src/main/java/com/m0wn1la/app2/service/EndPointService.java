@@ -50,7 +50,6 @@ public class EndPointService {
     }
 
     public EndPoint getEndPointByName(String name) throws ResourceNotFoundException {
-        Pageable pageable = Pageable.ofSize(DefaultValues.DEFAULT_PAGE_SIZE);
         return endPointRepository.findOne(EndPointSpecification.findByName(name)).orElseThrow(
                 () -> new ResourceNotFoundException("Couldn't find endpoint with name:" + name));
     }

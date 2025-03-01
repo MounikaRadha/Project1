@@ -27,24 +27,26 @@ public class PostedDataController {
         return postedService.createPost(request);
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public Page<EndPointDTO> index(@RequestParam(name = "page",required = false,defaultValue = "0") int pageNumber,
-//                                   @RequestParam(name = "size",required = false,defaultValue = "2") int pageSize) {
-//        return endPointService.findAllEndPoints(pageNumber,pageSize);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-//    public EndPointDTO getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
-//        return endPointMapper.endPointToEndPointDTO(endPointService.getEndPointById(id));
-//    }
-//
-//    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
-//    public EndPointDTO updateEndPointById(@PathVariable("id") Long endPointId, @RequestBody EndPointPostRequest request) throws ResourceNotFoundException {
-//        return endPointService.updateEndPoint(endPointId, request);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
-//    public void deleteEndPointById(@PathVariable("id") Long endPointId) throws ResourceNotFoundException {
-//        endPointService.deleteEndPoint(endPointId);
-//    }
+    @RequestMapping(method = RequestMethod.GET)
+    public Page<PostedDataDTO> index(@RequestParam(name = "page",required = false,defaultValue = "0") int pageNumber,
+                                   @RequestParam(name = "size",required = false,defaultValue = "2") int pageSize) {
+        return postedService.findAllPostedData(pageNumber,pageSize);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public PostedDataDTO getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
+        return postDataMapper.postDataToPostedDataDTO(postedService.getPostDataById(id));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    public PostedDataDTO updatePostedDataById(@PathVariable("id") Long endPointId, @RequestBody PostDataRequest request) throws ResourceNotFoundException {
+        return postedService.updatePostedData(endPointId, request);
+    }
+
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    public void deletePostById(@PathVariable("id") Long postId) throws ResourceNotFoundException {
+        postedService.deletePostById(postId);
+    }
+
 }
