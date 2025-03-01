@@ -1,5 +1,6 @@
 package com.m0wn1la.app2.mapper;
 
+import com.m0wn1la.app2.dto.LeanUserDTO;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.request.UserPostRequest;
@@ -15,4 +16,7 @@ public interface UserMapper {
 
     @Mapping(target = "userName", source = "username")
     void mergeUserPostRequestToUser(UserPostRequest request, @MappingTarget User user);
+
+
+    LeanUserDTO userToLeanUserDTO(User user);
 }

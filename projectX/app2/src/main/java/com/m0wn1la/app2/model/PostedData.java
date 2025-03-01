@@ -6,10 +6,10 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Entity(name = "posted_by")
+@Entity(name = "posted_data")
 public class PostedData extends BaseEntity {
     @ManyToOne
-    @JoinColumn(name = "end_points", referencedColumnName = "id")
+    @JoinColumn(name = "endpoint", referencedColumnName = "id")
     public EndPoint endPoint;
     @ManyToOne
     @JoinColumn(name="posted_by", referencedColumnName = "id")

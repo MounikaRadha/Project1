@@ -1,5 +1,6 @@
 package com.m0wn1la.app2.service;
 
+import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.dto.EndPointDTO;
 import com.m0wn1la.app2.dto.EndPointDTOWithUserDTO;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
@@ -8,12 +9,16 @@ import com.m0wn1la.app2.model.EndPoint;
 import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.repository.EndPointRepository;
 import com.m0wn1la.app2.request.EndPointPostRequest;
+import com.m0wn1la.app2.specification.EndPointSpecification;
+import com.m0wn1la.app2.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -44,11 +49,17 @@ public class EndPointService {
                 () -> new ResourceNotFoundException("Couldn't find end point resource with id:" + id));
     }
 
+    public EndPoint getEndPointByName(String name) throws ResourceNotFoundException {
+        Pageable pageable = Pageable.ofSize(DefaultValues.DEFAULT_PAGE_SIZE);
+        return endPointRepository.findOne(EndPointSpecification.findByName(name)).orElseThrow(
+                () -> new ResourceNotFoundException("Couldn't find endpoint with name:" + name));
+    }
+
     public EndPointDTO updateEndPoint(Long endPointId, EndPointPostRequest request) throws ResourceNotFoundException {
-        EndPoint endPoint=endPointRepository.findById(endPointId).orElseThrow(
-                ()->new ResourceNotFoundException("Could not find end point with id: "+endPointId)
+        EndPoint endPoint = endPointRepository.findById(endPointId).orElseThrow(
+                () -> new ResourceNotFoundException("Could not find end point with id: " + endPointId)
         );
-        endPointMapper.mergeEndPointPostRequestToEndPoint(request,endPoint);
+        endPointMapper.mergeEndPointPostRequestToEndPoint(request, endPoint);
         endPointRepository.save(endPoint);
         return endPointMapper.endPointToEndPointDTO(endPoint);
     }

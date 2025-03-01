@@ -5,4 +5,5 @@ public interface PrivateURLConstants {
     String THE_UPDATER_BASE = BASE_VERSION + "/the_updater";
     String USERS = THE_UPDATER_BASE + "/users";
     String ENDPOINTS = THE_UPDATER_BASE + "/end_points";
+    String POST_DATA= THE_UPDATER_BASE + "/post_data";
 }
