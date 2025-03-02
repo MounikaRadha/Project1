@@ -1,5 +1,7 @@
 package com.m0wn1la.app2.controller;
 
+import com.m0wn1la.app2.Enums.UserInfoLocation;
+import com.m0wn1la.app2.annotation.ValidateRequest;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.EndPointDTO;
 import com.m0wn1la.app2.dto.PostedDataDTO;
@@ -37,7 +39,7 @@ public class PostedDataController {
     public PostedDataDTO getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
         return postDataMapper.postDataToPostedDataDTO(postedService.getPostDataById(id));
     }
-
+    @ValidateRequest(positionToValidate = "2",category= UserInfoLocation.METHOD_ARGUMENTS)
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
     public PostedDataDTO updatePostedDataById(@PathVariable("id") Long endPointId, @RequestBody PostDataRequest request) throws ResourceNotFoundException {
         return postedService.updatePostedData(endPointId, request);

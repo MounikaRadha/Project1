@@ -32,7 +32,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             String header = request.getHeader("Authorization");
             if (header == null) {
                 log.info("no authorization header present setting user as 1");
-                UserContext.setCurrentUser(userService.getUserById(1L));
+                UserContext.setCurrentUser(userService.getUserById(2L));
             } else {
                 APIToken apiToken = jwtTokenService.parseToken(header.substring(7));
                 UserContext.setCurrentUser(userService.getUserById(apiToken.getUserId()));

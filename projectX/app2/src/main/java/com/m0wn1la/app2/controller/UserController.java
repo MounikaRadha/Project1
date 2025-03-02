@@ -1,5 +1,6 @@
 package com.m0wn1la.app2.controller;
 
+import com.m0wn1la.app2.annotation.ValidateRequest;
 import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.UserDTO;
@@ -43,11 +44,13 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
+    @ValidateRequest
     public UserDTO updateUserById(@PathVariable("id") Long userId, @RequestBody UserPostRequest request) throws ResourceNotFoundException {
         return userService.updateUser(userId, request);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    @ValidateRequest
     public void deleteUserById(@PathVariable("id") Long userId) {
         userService.deleteUser(userId);
     }
