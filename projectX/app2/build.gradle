@@ -39,6 +39,7 @@ dependencies {
 	implementation 'org.flywaydb:flyway-mysql:10.20.1'//unsupported version mysql 8
 //	implementation 'at.favre.lib:bcrypt:0.10.2'
 	implementation 'org.mindrot:jbcrypt:0.4'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
 
 
