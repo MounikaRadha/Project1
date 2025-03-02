@@ -45,6 +45,12 @@ public class EndPointService {
         return endPointDTOS;
     }
 
+
+    public User findOwner(Long endPointId) throws ResourceNotFoundException {
+        EndPoint endPoint= endPointRepository.findById(endPointId).orElseThrow(()->new ResourceNotFoundException("can t find endpoint with that id "+endPointId));
+        return endPoint.getOwnedBy();
+    }
+
     public EndPoint getEndPointById(Long id) throws ResourceNotFoundException {
 
         return endPointRepository.findById(id).orElseThrow(

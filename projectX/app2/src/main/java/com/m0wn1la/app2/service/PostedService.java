@@ -53,6 +53,10 @@ public class PostedService {
         return postedDataRepository.getById(id);
     }
 
+    public User findOwner(Long postId) throws ResourceNotFoundException {
+       PostedData postedData= postedDataRepository.findById(postId).orElseThrow(()->new ResourceNotFoundException("cant find post with the given id "+postId));
+        return postedData.getPostedBy();
+    }
     public PostedDataDTO updatePostedData(Long endPointId, PostDataRequest request) {
         PostedData postedData = postedDataRepository.getById(endPointId);
         postedData.setPostData(request.getPostData());

@@ -13,7 +13,6 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ValidateNonGetRequests {
-    private final UserContext userContext;
 
     public void validateNonGetRequests(Long givenUserId) throws CheatingException {
         if (Objects.equals(UserContext.getCurrentUser().getId(), givenUserId)) {

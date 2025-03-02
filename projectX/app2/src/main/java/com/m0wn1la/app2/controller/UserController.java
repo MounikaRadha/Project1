@@ -44,13 +44,13 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
-    @ValidateRequest
+    @ValidateRequest(positionToValidate = "0")
     public UserDTO updateUserById(@PathVariable("id") Long userId, @RequestBody UserPostRequest request) throws ResourceNotFoundException {
         return userService.updateUser(userId, request);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
-    @ValidateRequest
+    @ValidateRequest(positionToValidate = "0")
     public void deleteUserById(@PathVariable("id") Long userId) {
         userService.deleteUser(userId);
     }

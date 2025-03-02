@@ -39,12 +39,13 @@ public class EndPointController {
         return endPointMapper.endPointToEndPointDTO(endPointService.getEndPointById(id));
     }
 
-    @ValidateRequest(positionToValidate = "2",category = UserInfoLocation.METHOD_ARGUMENTS)
+    @ValidateRequest(positionToValidate = "1",category = UserInfoLocation.METHOD_ARGUMENTS)
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
     public EndPointDTO updateEndPointById(@PathVariable("id") Long endPointId, @RequestBody EndPointPostRequest request) throws ResourceNotFoundException {
         return endPointService.updateEndPoint(endPointId, request);
     }
 
+    @ValidateRequest(positionToValidate = "0",category = UserInfoLocation.CALCULATE_FROM_ARGUMENT)
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
     public void deleteEndPointById(@PathVariable("id") Long endPointId) throws ResourceNotFoundException {
         endPointService.deleteEndPoint(endPointId);

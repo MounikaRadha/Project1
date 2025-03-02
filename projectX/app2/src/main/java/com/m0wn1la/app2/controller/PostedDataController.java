@@ -39,13 +39,14 @@ public class PostedDataController {
     public PostedDataDTO getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
         return postDataMapper.postDataToPostedDataDTO(postedService.getPostDataById(id));
     }
-    @ValidateRequest(positionToValidate = "2",category= UserInfoLocation.METHOD_ARGUMENTS)
+    @ValidateRequest(positionToValidate = "1",category= UserInfoLocation.METHOD_ARGUMENTS)
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
     public PostedDataDTO updatePostedDataById(@PathVariable("id") Long endPointId, @RequestBody PostDataRequest request) throws ResourceNotFoundException {
         return postedService.updatePostedData(endPointId, request);
     }
 
 
+    @ValidateRequest(positionToValidate = "0",category = UserInfoLocation.CALCULATE_FROM_ARGUMENT)
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
     public void deletePostById(@PathVariable("id") Long postId) throws ResourceNotFoundException {
         postedService.deletePostById(postId);
