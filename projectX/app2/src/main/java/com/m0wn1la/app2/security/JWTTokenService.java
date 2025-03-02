@@ -20,7 +20,6 @@ import java.util.Date;
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JWTTokenService {
-    @Value("${jwt.secret}")
     private static String JWT_SECRET;
     private final UserService userService;
     private final PasswordHashingUtil passwordHashingUtil;
@@ -48,6 +47,8 @@ public class JWTTokenService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+
     public static String generateToken(APIToken apiToken) {
         Claims claims = Jwts.claims().setSubject("token1111");//todo change subject
         claims.put("userId", apiToken.getUserId());
@@ -55,5 +56,10 @@ public class JWTTokenService {
                 .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
+    }
+
+    @Value("${jwt.secret}")
+    public void setJWTSecretKey(String secretKey) {
+        JWT_SECRET = secretKey;
     }
 }
