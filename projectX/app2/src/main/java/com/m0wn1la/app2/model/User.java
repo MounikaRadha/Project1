@@ -19,4 +19,8 @@ public class User extends BaseEntity {
     public List<EndPoint> endPoints;
     @OneToMany(mappedBy = "postedBy")
     public List<PostedData> postedData;
+    @Column(name="hashed_password")
+    public String hashedPassword;
+    @Column(name = "salt")
+    public String salt;
 }

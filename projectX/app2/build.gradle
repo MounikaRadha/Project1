@@ -37,7 +37,8 @@ dependencies {
 //	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
 	//above dependcey(not gone yet) for this err org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Unsupported Database: MySQL 8.1
 	implementation 'org.flywaydb:flyway-mysql:10.20.1'//unsupported version mysql 8
-
+//	implementation 'at.favre.lib:bcrypt:0.10.2'
+	implementation 'org.mindrot:jbcrypt:0.4'
 
 
 

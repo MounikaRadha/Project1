@@ -12,6 +12,7 @@ import com.m0wn1la.app2.request.EndPointPostRequest;
 import com.m0wn1la.app2.specification.EndPointSpecification;
 import com.m0wn1la.app2.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Log4j2
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EndPointService {
@@ -37,6 +38,7 @@ public class EndPointService {
     }
 
     public Page<EndPointDTO> findAllEndPoints(int pageNumber, int pageSize) {
+        log.info("thread name is in service "+Thread.currentThread().getName());
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<EndPoint> endPoints = endPointRepository.findAll(pageable);
         Page<EndPointDTO> endPointDTOS = endPoints.map(endPoint -> endPointMapper.endPointToEndPointDTO(endPoint));

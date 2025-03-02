@@ -16,6 +16,10 @@
 - https://medium.com/@mikecode/pagination-with-spring-data-jpa-spring-boot-b89c48ce723d
 - https://medium.com/hprog99/mastering-spring-data-jpa-specifications-for-robust-data-access-24e7626d169a
 - https://medium.com/@samuelgbenga972/taming-the-infinite-loop-in-spring-boots-bidirectional-relationships-f4aa2d111183 **
+- https://stackoverflow.com/questions/47938265/does-spring-create-new-thread-per-request-in-rest-controllers ***
+- https://medium.com/@burakkocakeu/spring-web-vs-spring-webflux-9224260c47b5
+- https://stackoverflow.com/questions/39002090/spring-boot-limit-on-number-of-connections-created
+- https://medium.com/@alxkm/effective-use-of-threadlocal-in-java-applications-f4eb6a648d4a (to read)
 ## db
 - https://stackoverflow.com/questions/28719531/why-setting-a-collation-for-utf8-text-data-in-mysql
 - https://medium.com/@burakkocakeu/in-spring-data-jpa-onetomany-what-are-these-fields-mappedby-fetch-cascade-and-orphanremoval-2655f4027c4f

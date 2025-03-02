@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
     @RequestMapping
     public String home1(){
-        return " welcome to the app and i changed!";
+        return " welcome to the app,i am from "+Thread.currentThread().getName();
     }
 
 }

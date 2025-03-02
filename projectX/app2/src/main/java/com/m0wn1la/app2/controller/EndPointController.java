@@ -28,6 +28,7 @@ public class EndPointController {
     @RequestMapping(method = RequestMethod.GET)
     public Page<EndPointDTO> index(@RequestParam(name = "page",required = false,defaultValue = "0") int pageNumber,
                                               @RequestParam(name = "size",required = false,defaultValue = "2") int pageSize) {
+        log.info("thread name is  in contoller "+Thread.currentThread().getName());
         return endPointService.findAllEndPoints(pageNumber,pageSize);
     }
 
