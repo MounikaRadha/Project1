@@ -23,6 +23,7 @@ public class EndPointController {
     private final EndPointMapper endPointMapper;
 
     @RequestMapping(method = RequestMethod.POST)
+    @ValidateRequest(positionToValidate = "0", category = UserInfoLocation.METHOD_ARGUMENTS)
     public EndPointDTO createEndPoint(@RequestBody EndPointPostRequest request) throws ResourceNotFoundException {
         return endPointService.createEndPoint(request);
     }

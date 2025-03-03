@@ -1,8 +1,6 @@
 package com.m0wn1la.app2.security;
 
 import com.m0wn1la.app2.context.UserContext;
-import com.m0wn1la.app2.exception.InvalidJwtTokenException;
-import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -28,17 +26,24 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String header = request.getHeader("Authorization");
-            if (header == null) {
-                log.info("no authorization header present setting user as 1");
-                UserContext.setCurrentUser(userService.getUserById(2L));
-            } else {
-                APIToken apiToken = jwtTokenService.parseToken(header.substring(7));
+            String authHeader = request.getHeader("Authorization");
+            String userId = request.getHeader("php-auth-user");
+            String password = request.getHeader("php-auth-password");
+            if (authHeader != null) {
+                APIToken apiToken = jwtTokenService.parseToken(authHeader.substring(7));
                 UserContext.setCurrentUser(userService.getUserById(apiToken.getUserId()));
+            } else if (userId != null && password != null) {
+                jwtTokenService.validateUser(Long.valueOf(userId), password);
+                UserContext.setCurrentUser(userService.getUserById(Long.valueOf(userId)));
+            } else {
+                log.info("no authorization authHeader present setting user as 1");
+                UserContext.setCurrentUser(userService.getUserById(2L));
             }
-        } catch (ResourceNotFoundException | InvalidJwtTokenException e) {
-            throw new RuntimeException(e);
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
         }
-        filterChain.doFilter(request, response);
     }
+
+
 }

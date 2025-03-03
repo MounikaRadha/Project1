@@ -24,6 +24,7 @@ public class PostedDataController {
     private final PostDataMapper postDataMapper;
 
     @RequestMapping(method = RequestMethod.POST)
+    @ValidateRequest(positionToValidate = "0", category = UserInfoLocation.METHOD_ARGUMENTS)
     public PostedDataDTO createPost(@RequestBody PostDataRequest request) throws TheUpdaterException {
         return postedService.createPost(request);
     }
