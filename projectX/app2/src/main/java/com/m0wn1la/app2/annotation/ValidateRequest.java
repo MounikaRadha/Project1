@@ -11,5 +11,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidateRequest {
     UserInfoLocation category() default UserInfoLocation.CONTROLLER_PATH;
+
     String positionToValidate() default "1";
 }

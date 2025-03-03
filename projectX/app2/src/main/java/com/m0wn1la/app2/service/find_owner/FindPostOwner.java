@@ -14,7 +14,7 @@ public class FindPostOwner extends FindOwner {
 
     @Override
     public BaseEntity findOwner(Long id) throws ResourceNotFoundException {
-       return postedService.findOwner(id);
+        return postedService.findOwner(id);
 
     }
 }

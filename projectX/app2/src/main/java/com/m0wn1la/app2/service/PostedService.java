@@ -1,7 +1,6 @@
 package com.m0wn1la.app2.service;
 
 import com.m0wn1la.app2.dto.PostedDataDTO;
-import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.InvalidDetailsByUserException;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.exception.TheUpdaterException;
@@ -43,7 +42,7 @@ public class PostedService {
     }
 
     public Page<PostedDataDTO> findAllPostedData(int pageNumber, int pageSize) {
-        Pageable pageable= PageRequest.of(pageNumber,pageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<PostedData> allPostedData = postedDataRepository.findAll(pageable);
         return allPostedData.map(postDataMapper::postDataToPostedDataDTO);
 
@@ -54,15 +53,16 @@ public class PostedService {
     }
 
     public User findOwner(Long postId) throws ResourceNotFoundException {
-       PostedData postedData= postedDataRepository.findById(postId).orElseThrow(()->new ResourceNotFoundException("cant find post with the given id "+postId));
+        PostedData postedData = postedDataRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("cant find post with the given id " + postId));
         return postedData.getPostedBy();
     }
+
     public PostedDataDTO updatePostedData(Long endPointId, PostDataRequest request) {
         PostedData postedData = postedDataRepository.getById(endPointId);
         postedData.setPostData(request.getPostData());
         postedData.setTags(request.getTags());
         postedData = postedDataRepository.save(postedData);
-       return postDataMapper.postDataToPostedDataDTO(postedData);
+        return postDataMapper.postDataToPostedDataDTO(postedData);
     }
 
     public void deletePostById(Long postId) {

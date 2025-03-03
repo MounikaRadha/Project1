@@ -1,7 +1,6 @@
 package com.m0wn1la.app2.controller;
 
 import com.m0wn1la.app2.annotation.ValidateRequest;
-import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
@@ -22,15 +21,15 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-    @RequestMapping(method = RequestMethod.POST )
+    @RequestMapping(method = RequestMethod.POST)
     public UserDTO createUser(@RequestBody UserPostRequest request) {
         return userService.create(request);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<UserDTO> index(@RequestParam(name = "page",required = false,defaultValue = "0") int pageNumber,
-                               @RequestParam(name = "size",required = false,defaultValue = "2") int pageSize) {
-        return userService.findAllUsers(pageNumber,pageSize);
+    public Page<UserDTO> index(@RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
+                               @RequestParam(name = "size", required = false, defaultValue = "2") int pageSize) {
+        return userService.findAllUsers(pageNumber, pageSize);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")

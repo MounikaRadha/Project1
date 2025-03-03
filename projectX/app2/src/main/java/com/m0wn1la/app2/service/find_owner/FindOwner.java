@@ -4,5 +4,5 @@ import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.model.BaseEntity;
 
 abstract public class FindOwner {
-   public abstract  BaseEntity findOwner(Long id) throws ResourceNotFoundException;
+    public abstract BaseEntity findOwner(Long id) throws ResourceNotFoundException;
 }

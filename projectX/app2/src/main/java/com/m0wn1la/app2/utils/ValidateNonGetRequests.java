@@ -18,7 +18,7 @@ public class ValidateNonGetRequests {
         if (Objects.equals(UserContext.getCurrentUser().getId(), givenUserId)) {
             log.info("given user id is equal to the user who is in context ....:)  ");
         } else {
-            throw new CheatingException("you are trying to update/delete someone else's data ......");
+            throw new CheatingException();
         }
     }
 }

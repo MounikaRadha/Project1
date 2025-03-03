@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class FindEndPointOwner extends FindOwner{
+public class FindEndPointOwner extends FindOwner {
     private final EndPointService endPointService;
 
     @Override

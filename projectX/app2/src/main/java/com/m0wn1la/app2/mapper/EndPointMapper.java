@@ -11,8 +11,9 @@ import org.mapstruct.*;
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface EndPointMapper {
     EndPointDTO endPointToEndPointDTO(EndPoint endPoint);
+
     @Mapping(source = "ownedBy", target = "owner")
     EndPointDTOWithUserDTO endPointToEndPointDTOWithUser(EndPoint endPoint);
 
-    void mergeEndPointPostRequestToEndPoint(EndPointPostRequest request,@MappingTarget EndPoint endPoint);
+    void mergeEndPointPostRequestToEndPoint(EndPointPostRequest request, @MappingTarget EndPoint endPoint);
 }

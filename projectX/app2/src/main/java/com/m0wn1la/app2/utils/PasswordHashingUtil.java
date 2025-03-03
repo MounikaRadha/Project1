@@ -1,7 +1,7 @@
 package com.m0wn1la.app2.utils;
 
-import org.springframework.stereotype.Component;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Component;
 
 @Component
 public class PasswordHashingUtil {
@@ -9,6 +9,7 @@ public class PasswordHashingUtil {
         return BCrypt.hashpw(password, salt);
 
     }
+
     public String generateSalt() {
         return BCrypt.gensalt();
     }

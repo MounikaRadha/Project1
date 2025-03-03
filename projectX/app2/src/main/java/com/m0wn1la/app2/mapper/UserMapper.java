@@ -11,7 +11,7 @@ import org.mapstruct.*;
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface UserMapper {
     @Mapping(target = "username", source = "userName")
-    @Mapping(target = "endPointDTOWithUserDTOS",source = "endPoints")
+    @Mapping(target = "endPointDTOWithUserDTOS", source = "endPoints")
     UserDTO userToUserDTO(User user);
 
     @Mapping(target = "userName", source = "username")

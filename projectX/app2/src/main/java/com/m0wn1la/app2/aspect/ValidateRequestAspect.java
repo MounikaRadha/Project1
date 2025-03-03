@@ -1,12 +1,12 @@
 package com.m0wn1la.app2.aspect;
 
 import com.m0wn1la.app2.Enums.UserInfoLocation;
+import com.m0wn1la.app2.annotation.ValidateRequest;
 import com.m0wn1la.app2.service.find_owner.FindOwner;
 import com.m0wn1la.app2.service.find_owner.FindOwnerFactory;
 import com.m0wn1la.app2.utils.ValidateNonGetRequests;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import com.m0wn1la.app2.annotation.ValidateRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

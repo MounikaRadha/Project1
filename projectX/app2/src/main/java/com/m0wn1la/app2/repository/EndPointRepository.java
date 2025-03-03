@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EndPointRepository extends JpaRepository<EndPoint, Long> , JpaSpecificationExecutor<EndPoint> {
+public interface EndPointRepository extends JpaRepository<EndPoint, Long>, JpaSpecificationExecutor<EndPoint> {
 }

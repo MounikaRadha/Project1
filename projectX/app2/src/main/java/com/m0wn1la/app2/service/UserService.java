@@ -29,8 +29,8 @@ public class UserService {
         log.debug("creating a new user");
         User user = new User();
         user.setUserName(request.getUsername());
-        String salt= passwordHashingUtil.generateSalt();
-        String hashedPassword=passwordHashingUtil.hashPassword(request.getPassword(), salt);
+        String salt = passwordHashingUtil.generateSalt();
+        String hashedPassword = passwordHashingUtil.hashPassword(request.getPassword(), salt);
         user.setHashedPassword(hashedPassword);
         user.setSalt(salt);
         user = userRepository.save(user);

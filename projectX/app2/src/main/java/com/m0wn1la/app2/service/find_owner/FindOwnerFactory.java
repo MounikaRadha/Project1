@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 public class FindOwnerFactory {
     private final FindPostOwner findPostOwner;
     private final FindEndPointOwner findEndPointOwner;
-    public FindOwner getFindOwnerService(String className){
-        if(className.toLowerCase().contains("endpoint")){
+
+    public FindOwner getFindOwnerService(String className) {
+        if (className.toLowerCase().contains("endpoint")) {
             return findEndPointOwner;
-        }
-        else if(className.toLowerCase().contains("post")){
+        } else if (className.toLowerCase().contains("post")) {
             return findPostOwner;
-        }
-        else {
+        } else {
             return null;
         }
-    };
+    }
+
+    ;
 }

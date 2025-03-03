@@ -15,11 +15,11 @@ import java.util.List;
 public class User extends BaseEntity {
     @Column(name = "name")
     public String userName;
-    @OneToMany(mappedBy = "ownedBy",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ownedBy", fetch = FetchType.EAGER)
     public List<EndPoint> endPoints;
     @OneToMany(mappedBy = "postedBy")
     public List<PostedData> postedData;
-    @Column(name="hashed_password")
+    @Column(name = "hashed_password")
     public String hashedPassword;
     @Column(name = "salt")
     public String salt;

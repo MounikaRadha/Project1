@@ -1,9 +1,8 @@
 package com.m0wn1la.app2.security;
 
 import com.m0wn1la.app2.context.UserContext;
-import com.m0wn1la.app2.exception.InvalidCredentialsException;
+import com.m0wn1la.app2.exception.InvalidJwtTokenException;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
-import com.m0wn1la.app2.model.User;
 import com.m0wn1la.app2.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -37,7 +36,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 APIToken apiToken = jwtTokenService.parseToken(header.substring(7));
                 UserContext.setCurrentUser(userService.getUserById(apiToken.getUserId()));
             }
-        } catch (ResourceNotFoundException e) {
+        } catch (ResourceNotFoundException | InvalidJwtTokenException e) {
             throw new RuntimeException(e);
         }
         filterChain.doFilter(request, response);

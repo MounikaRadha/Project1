@@ -4,4 +4,8 @@ public class TheUpdaterException extends Exception {
     public TheUpdaterException(String message) {
         super(message);
     }
+
+    public TheUpdaterException() {
+        super();
+    }
 }
