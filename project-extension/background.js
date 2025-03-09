@@ -1,0 +1,1 @@
+import './scripts/background1.js'
