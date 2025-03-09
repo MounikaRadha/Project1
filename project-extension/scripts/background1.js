@@ -11,7 +11,6 @@ chrome.action.onClicked.addListener(async (tab) => {
     let ans=await chrome.storage.sync.get("urls")
     console.log("ans is "+ans+"type is "+typeof(ans))
     ans["urls"].map(x=>console.log("url is "+x))
-    // await chrome.tabs.sendMessage(tab.id, { data: "test data from background1" });
 });
 const handleNewOrOldTabs=(activeInfo)=>{
     chrome.tabs.get(activeInfo.tabId, (tab) => {
@@ -36,7 +35,6 @@ chrome.tabs.onUpdated.addListener((activeInfo)=>{
     console.log("updatedddd")
     chrome.tabs.get(activeInfo, (tab) => {
         if (chrome.runtime.lastError) return;
-        // Send message to the content script
         chrome.tabs.sendMessage(tab.id, { data: 'test' }, (response) => {
             if (chrome.runtime.lastError) {
                 console.log("err-", chrome.runtime.lastError);

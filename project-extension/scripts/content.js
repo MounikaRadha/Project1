@@ -2,7 +2,11 @@
 // document.body.innerHTML="test"
 // }
 chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
-    if(msg.data=="test"){
+    if(msg.data=="giveUrl"){
+        const url=window.location.href
+        sendResponse(url)
+    }
+    else if (msg.data=="test"){
         document.body.innerHTML="test message received"
         sendResponse("callling send response with test")
     }
