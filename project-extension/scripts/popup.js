@@ -1,27 +1,29 @@
-const closePopup=()=>{
-    window.close()
-}
-const sumbitFormHandler=()=>{
-    var query = { active: true, currentWindow: true };
-    chrome.tabs.query(query, (tabs)=>{
-        chrome.tabs.sendMessage(tabs[0].id, { data: 'giveUrl' }, (response) => {
-            if (chrome.runtime.lastError) {
-                console.log("err-", chrome.runtime.lastError);
-            } else {
-                console.log("url is --", response);
-            }
-            chrome.storage.sync.set({"key1":response})
-        })
+const closePopup = () => {
+  window.close();
+};
+const sumbitFormHandler = (event) => {
+  document.getElementById("successDiv").style.display = "block";
+  document.getElementById("passwordDiv").style.display = "none";
+  const password = document.getElementById("passwordField").value;
+  var query = { active: true, currentWindow: true };
+  chrome.tabs.query(query, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { data: "giveUrl" }, (response) => {
+      chrome.storage.sync.set({
+        key1: response + "password" + password,
+      });
     });
-   
-   
-}
-const replaceContentHandler=async()=>{
-    let newvalue=await chrome.storage.sync.get("key1");
-    const url=window.location.href
-    document.getElementById("replaceContent").innerText="the new value is "+newvalue["key1"]
-}
+  });
+};
+const replaceContentHandler = async () => {
+  let newvalue = await chrome.storage.sync.get("key1");
+  document.getElementById("replaceContent").innerText =
+    "the new value iss " + newvalue["key1"];
+};
 
-document.getElementById("myform").addEventListener("submit",sumbitFormHandler)
-document.getElementById('closeWindow').addEventListener('click', closePopup);
-document.getElementById("replaceContent").addEventListener("click",replaceContentHandler)
+document
+  .getElementById("submitPassword")
+  .addEventListener("click", sumbitFormHandler);
+document.getElementById("closeWindow").addEventListener("click", closePopup);
+document
+  .getElementById("replaceContent")
+  .addEventListener("click", replaceContentHandler);

@@ -12,8 +12,11 @@ chrome.action.onClicked.addListener(async (tab) => {
     console.log("ans is "+ans+"type is "+typeof(ans))
     ans["urls"].map(x=>console.log("url is "+x))
 });
-const handleNewOrOldTabs=(activeInfo)=>{
-    chrome.tabs.get(activeInfo.tabId, (tab) => {
+const handleNewOrOldTabs=async (activeInfo)=>{
+    chrome.tabs.get(activeInfo.tabId, async (tab) => {
+        let urls=await chrome.storage.sync.get("key1")
+        console.log("urls are"+urls)
+        let url=await chrome.storage.sync.get(tab.url);
         if(tab.title=="New Tab" || chrome.runtime.lastError ) return;
         chrome.tabs.sendMessage(tab.id, { data: 'test' }, (response) => {
             if (chrome.runtime.lastError) {
