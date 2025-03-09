@@ -1,13 +1,12 @@
-// if(location.href==="https://www.youtube.com/"){
-// document.body.innerHTML="test"
-// }
 chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
+    console.log("msg recevied is "+msg.data)
     if(msg.data=="giveUrl"){
         const url=window.location.href
         sendResponse(url)
     }
     else if (msg.data=="test"){
         document.body.innerHTML="test message received"
+       
         sendResponse("callling send response with test")
     }
     else{
