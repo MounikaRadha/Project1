@@ -5,7 +5,6 @@
 - user can set password for some specific sites
 - for those urls a pop up will be shown ,until the predefined password is typed
 - the whole content will be replaced with empty or this popuop
-- can be applied for file://
 ## things to see
 - chrome.storage.sync keeps data the same across all devices. Great for settings.(https://daily.dev/blog/writing-extensions-for-chrome-a-developers-guide)
 - https://developer.chrome.com/docs/extensions/get-started
