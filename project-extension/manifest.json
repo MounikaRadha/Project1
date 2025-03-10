@@ -2,6 +2,7 @@
     "name": "Protect your tabs",
     "description": "An extension via which individual domains like gmail,whatsapp can be locked with password",
     "version": "1.0",
+    "author":"radha mounika pulakhandam",
     "manifest_version": 3,
     "action": {
       "default_popup": "popup.html"

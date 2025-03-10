@@ -1,1 +1,1 @@
-import './scripts/background1.js'
+import "./scripts/background1.js";
