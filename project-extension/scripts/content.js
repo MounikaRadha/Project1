@@ -11,6 +11,7 @@ chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
     }
    else if (msg.data == "askForPassword") {
     const modalContainer = document.createElement("div");
+    modalContainer.id="modalContainer"
     modalContainer.style.position = "fixed";
     modalContainer.style.top = "50%";
     modalContainer.style.left = "50%";
@@ -58,6 +59,7 @@ chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
 }
     else if(msg.data=="passwordVerified"){
         console.log(" you are a verifed user ")
+         document.getElementById("modalContainer").style.display="none"
          document.body.style.display="block"
         sendResponse("you are veriefed")
         return true;
