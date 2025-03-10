@@ -1,19 +1,59 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>title of popuop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popup Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f4f4f4;
+      width: 300px;
+    }
+    h1 {
+      color: #333;
+    }
+    #passwordDiv {
+      margin-top: 20px;
+    }
+    input {
+      padding: 10px;
+      width: 90%;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #successDiv {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-
 <body>
-  <h1>Hello Extensions</h1>
-  hi there
+  <h1>Protect your site</h1>
+  <p>Hi there</p>
   <div id="passwordDiv">
-    <input type="text" placeholder="enter password to protect your site" id="passwordField" />
-    <button id="submitPassword">save password</button>
+    <input type="text" placeholder="Enter password to protect your site" id="passwordField" />
+    <button id="submitPassword">Save Password</button>
   </div>
-  <div style="display:none" id="successDiv">password saved successfully</div>
-  <button id="closeWindow">click me to close window</button>
+  <div id="successDiv">Password saved successfully</div>
   <script src="./scripts/popup.js"></script>
 </body>
-
 </html>

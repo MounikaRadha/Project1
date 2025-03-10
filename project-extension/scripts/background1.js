@@ -40,6 +40,6 @@ chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
      
     }
     console.log("Password received in background:", msg.passwordFromUser);
-    // You can store or process the password here
   }
+ 
 });
