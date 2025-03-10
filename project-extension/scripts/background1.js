@@ -32,14 +32,13 @@ chrome.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
     if (msg["passwordFromUser"]["password"] == password) {
       var query = { active: true, currentWindow: true };
       chrome.tabs.query(query, async (tabs) => {
-        await chrome.tabs.sendMessage(sender.tab.id, { data: "passwordVerified" });
+        await chrome.tabs.sendMessage(sender.tab.id, {
+          data: "passwordVerified",
+        });
       });
     } else {
-    
-        await chrome.tabs.sendMessage(sender.tab.id, { data: "cheater" });
-     
+      await chrome.tabs.sendMessage(sender.tab.id, { data: "cheater" });
     }
     console.log("Password received in background:", msg.passwordFromUser);
   }
- 
 });

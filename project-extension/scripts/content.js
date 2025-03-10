@@ -1,17 +1,15 @@
-chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
-    console.log("msg recevied is "+msg.data)
-    if(msg.data=="giveUrl"){
-        const url=window.location.href
-        sendResponse(url)
-    }
-    else if (msg.data=="test"){
-        document.body.innerHTML="test message received"
-       
-        sendResponse("callling send response with test")
-    }
-   else if (msg.data == "askForPassword") {
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  console.log("msg recevied is " + msg.data);
+  if (msg.data == "giveUrl") {
+    const url = window.location.href;
+    sendResponse(url);
+  } else if (msg.data == "test") {
+    document.body.innerHTML = "test message received";
+
+    sendResponse("callling send response with test");
+  } else if (msg.data == "askForPassword") {
     const modalContainer = document.createElement("div");
-    modalContainer.id="modalContainer"
+    modalContainer.id = "modalContainer";
     modalContainer.style.position = "fixed";
     modalContainer.style.top = "50%";
     modalContainer.style.left = "50%";
@@ -41,35 +39,34 @@ chrome.runtime.onMessage.addListener((msg,sender,sendResponse)=>{
     submitElement.style.cursor = "pointer";
     submitElement.style.width = "100%";
     submitElement.addEventListener("mouseenter", () => {
-        submitElement.style.backgroundColor = "#0056b3";
+      submitElement.style.backgroundColor = "#0056b3";
     });
     submitElement.addEventListener("mouseleave", () => {
-        submitElement.style.backgroundColor = "#007bff";
+      submitElement.style.backgroundColor = "#007bff";
     });
     modalContainer.appendChild(inputElement);
     modalContainer.appendChild(submitElement);
     document.body.style.display = "none";
     document.documentElement.appendChild(modalContainer);
     document.getElementById("submitButton").addEventListener("click", () => {
-        let givenPassword = document.getElementById("inputField").value;
-        console.log("9866 givenpassword is " + givenPassword);
-        const obj = { "password": givenPassword, "url": location.href };
-        chrome.runtime.sendMessage({ "passwordFromUser": obj });
+      let givenPassword = document.getElementById("inputField").value;
+      console.log("9866 givenpassword is " + givenPassword);
+      const obj = { password: givenPassword, url: location.href };
+      chrome.runtime.sendMessage({ passwordFromUser: obj });
     });
-}
-    else if(msg.data=="passwordVerified"){
-        console.log(" you are a verifed user ")
-         document.getElementById("modalContainer").style.display="none"
-         document.body.style.display="block"
-        sendResponse("you are veriefed")
-        return true;
-    }
-    else if(msg.data=="cheater"){
-        let element=document.createTextNode("you are cheating... no access to youu")
-        document.documentElement.appendChild(element)
-    }
-    else{
-        document.body.innerHTML="the message that is received is not test"
-        sendResponse("callling send response with out test")
-    }
-})
+  } else if (msg.data == "passwordVerified") {
+    console.log(" you are a verifed user ");
+    document.getElementById("modalContainer").style.display = "none";
+    document.body.style.display = "block";
+    sendResponse("you are veriefed");
+    return true;
+  } else if (msg.data == "cheater") {
+    let element = document.createTextNode(
+      "you are cheating... no access to youu"
+    );
+    document.documentElement.appendChild(element);
+  } else {
+    document.body.innerHTML = "the message that is received is not test";
+    sendResponse("callling send response with out test");
+  }
+});
