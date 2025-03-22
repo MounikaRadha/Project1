@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import ApiService from "../../api/ApiService";
 import URL_Constants from "../../constants/Url_Constants";
-const getAllUsers = async () => {
-  const res = await ApiService.get(URL_Constants.USERS);
-  return res?.data?.content;
-};
 const useFindAllUsers = () => {
   const [userData, setUserData] = useState();
   const fetchUsers = async () => {
@@ -17,5 +13,5 @@ const useFindAllUsers = () => {
   return userData;
 };
 
-const UserService = { getAllUsers, useFindAllUsers };
+const UserService = { useFindAllUsers };
 export default UserService;
