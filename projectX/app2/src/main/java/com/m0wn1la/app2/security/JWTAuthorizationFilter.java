@@ -19,11 +19,11 @@ import java.io.IOException;
 @Component
 @Log4j2
 @Order(1)
-public class JWTAuthorizationFilter extends OncePerRequestFilter {
+public class JWTAuthorizationFilter  {
     private final JWTTokenService jwtTokenService;
     private final UserService userService;
 
-    @Override
+
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String authHeader = request.getHeader("Authorization");
