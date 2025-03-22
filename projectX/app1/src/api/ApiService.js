@@ -1,16 +1,13 @@
 import axios from "axios";
-import URL_Constants from "../constants/Url_Constants";
-const get = async(url) => {
+const get = async (url) => {
   try {
     const headers = {
-        "Content-Type": "application/json"
-      };
-    console.log("url is " + url);
-    const res = await axios.get(url,{headers});
-    console.log("res is " + res + " for " +url);
-    return res?.data;
+      "Content-Type": "application/json",
+    };
+    const res = await axios.get(url, { headers });
+    return res;
   } catch (e) {
-    console.log("err happpened " + e);
+    console.log("err .. " + e);
   }
 };
 const ApiService = { get };

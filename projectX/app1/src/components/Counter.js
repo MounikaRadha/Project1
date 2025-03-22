@@ -1,10 +1,8 @@
 import { useState } from "react";
 import ApiService from "../api/ApiService";
 import URL_Constants from "../constants/Url_Constants";
+import UsersListViewComponent from "./Users/UsersListViewComponent";
 
-const UsersData = ({ availableUsers }) => {
-  return availableUsers?.content?.map((x) => <p>{x["username"]}</p>);
-};
 const Counter = () => {
   const [availaleUsers, setAvailableUsers] = useState();
   const [count, setCount] = useState(0);
@@ -15,7 +13,7 @@ const Counter = () => {
   };
   return (
     <div>
-      <UsersData availableUsers={availaleUsers} />
+      <UsersListViewComponent usersList={availaleUsers?.data?.content} />
       The count is {count}
       <button onClick={incrementCount}>increase count</button>
     </div>
