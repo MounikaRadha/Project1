@@ -4,6 +4,7 @@ import com.m0wn1la.app2.annotation.ValidateRequest;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.DuplicateEntryException;
+import com.m0wn1la.app2.exception.InvalidCredentialsException;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.request.UserPostRequest;
@@ -23,8 +24,8 @@ public class UserController {
     private final UserMapper userMapper;
 
     @RequestMapping(method = RequestMethod.POST)
-    public UserDTO createUser(@RequestBody UserPostRequest request) throws DuplicateEntryException {
-        return userService.create(request);
+    public UserDTO handleUserPostRequest(@RequestBody UserPostRequest request) throws DuplicateEntryException, InvalidCredentialsException {
+        return userService.handlePostRequest(request);
     }
 
     @RequestMapping(method = RequestMethod.GET)

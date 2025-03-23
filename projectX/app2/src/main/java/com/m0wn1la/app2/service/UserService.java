@@ -3,6 +3,7 @@ package com.m0wn1la.app2.service;
 import com.m0wn1la.app2.config.DefaultValues;
 import com.m0wn1la.app2.dto.UserDTO;
 import com.m0wn1la.app2.exception.DuplicateEntryException;
+import com.m0wn1la.app2.exception.InvalidCredentialsException;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.mapper.UserMapper;
 import com.m0wn1la.app2.model.User;
@@ -29,42 +30,51 @@ public class UserService {
     private final PasswordHashingUtil passwordHashingUtil;
     private final JWTTokenService jwtTokenService;
 
-    public UserDTO handlePostRequest(UserPostRequest request) throws DuplicateEntryException {
-        if(!isRegister(request)) {
+    public UserDTO handlePostRequest(UserPostRequest request) throws DuplicateEntryException, InvalidCredentialsException {
+        if (!isRegister(request)) {
             //user is trying to login ,we have id,passowrd
             return verifyAndSendJWTToken(request);
         }
-        Integer userExists=userRepository.checkUserExistence(request.getUsername());
-        if(userExists>0) {
+        Integer userExists = userRepository.checkUserExistence(request.getUsername());
+        if (userExists > 0) {
             verifyAndSendJWTToken(request);
-            String msg=String.format("user with"+request.getUsername()+" name already exists");
-            throw new DuplicateEntryException(msg,"User ","username",request.getUsername());
+            String msg = String.format("user with" + request.getUsername() + " name already exists");
+            throw new DuplicateEntryException(msg, "User ", "username", request.getUsername());
         }
-        return  create(request);
+        return create(request);
     }
-    public UserDTO verifyAndSendJWTToken(UserPostRequest request){
+
+    public UserDTO verifyAndSendJWTToken(UserPostRequest request) throws InvalidCredentialsException {
         //to register/login there is one single form
         //to register user would give username,password
         //to login user would give id,password
 
-        Long userId=Long.valueOf(request.getUsername());
-        jwtTokenService.validateUser(userId,request.getPassword());
-        String token=jwtTokenService.generateToken(new APIToken(userId));
-        UserDTO userDTO=new UserDTO();
+        Long userId = getUserIdAtLoginTime(request);
+        jwtTokenService.validateUser(userId, request.getPassword());
+        String token = jwtTokenService.generateToken(new APIToken(userId));
+        UserDTO userDTO = new UserDTO();
         userDTO.setId(userId);
-        userDTO.setUsername("token:"+token);
+        userDTO.setUsername("token:" + token);
         return userDTO;
     }
 
-    public Boolean isRegister(UserPostRequest request){
-        try{
-            Long.parseLong(request.getUsername());
-            return false;
-        }
-        catch (Exception e) {
-            return  true;
+    public Long getUserIdAtLoginTime(UserPostRequest userPostRequest) throws InvalidCredentialsException {
+        try {
+            return Long.valueOf(userPostRequest.getUsername());
+        } catch (Exception e) {
+            throw new InvalidCredentialsException("you need to give id at time of login");
         }
     }
+
+    public Boolean isRegister(UserPostRequest request) {
+        try {
+            Long.parseLong(request.getUsername());
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
     public UserDTO create(UserPostRequest request) throws DuplicateEntryException {
 
         log.debug("creating a new user");

@@ -4,8 +4,8 @@ import com.m0wn1la.app2.exception.InvalidCredentialsException;
 import com.m0wn1la.app2.exception.InvalidJwtTokenException;
 import com.m0wn1la.app2.exception.TheUpdaterException;
 import com.m0wn1la.app2.model.User;
-import com.m0wn1la.app2.service.UserService;
 import com.m0wn1la.app2.utils.PasswordHashingUtil;
+import com.m0wn1la.app2.utils.UserServiceUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class JWTTokenService {
     private static String JWT_SECRET;
-    private final UserService userService;
+    private final UserServiceUtil userServiceUtil;
     private final PasswordHashingUtil passwordHashingUtil;
 
     public APIToken parseToken(String token) throws InvalidJwtTokenException {
@@ -40,7 +40,7 @@ public class JWTTokenService {
 
     public void validateUser(Long userId, String password) {
         try {
-            User user = userService.getUserById(userId);
+            User user = userServiceUtil.getUserById(userId);
             String generatedHash = passwordHashingUtil.hashPassword(password, user.getSalt());
             if (generatedHash.equals(user.getHashedPassword())) {
                 log.info("hash matched ... valid user");
