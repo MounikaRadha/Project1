@@ -22,10 +22,6 @@ const EndPointCreationComponent = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
         <label>Endpoint:</label>
         <input type="text" {...register("endPoint")} className="input-field" />
-        
-        <label>User ID:</label>
-        <input type="text" {...register("userId")} className="input-field" />
-        
         <button type="submit" className="create-btn">Create Endpoint</button>
         <button type="button" className="reset-btn" onClick={() => reset()}>Reset</button>
       </form>
