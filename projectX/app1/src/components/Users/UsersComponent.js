@@ -1,7 +1,7 @@
 import UsersListViewComponent from "./UsersListViewComponent";
 import UserService from "./UserService";
 import UserCreationComponent from "./UserCreationComponent";
-import '../../styles/Common.css'
+import "../../styles/Common.css";
 
 const UsersComponent = () => {
   const userData = UserService.useFindAllUsers();

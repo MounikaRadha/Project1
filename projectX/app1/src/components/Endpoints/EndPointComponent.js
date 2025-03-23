@@ -1,7 +1,7 @@
 import EndPointCreationComponent from "./EndPointCreationComponent";
 import EndPointListViewComponent from "./EndPointListViewComponent";
 import EndPointService from "./EndPointService";
-import '../../styles/Common.css'
+import "../../styles/Common.css";
 
 const EndPointComponent = () => {
   const endPointsList = EndPointService.useFindAllEndPoints();

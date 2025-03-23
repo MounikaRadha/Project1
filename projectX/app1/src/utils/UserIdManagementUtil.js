@@ -7,9 +7,8 @@ const getUserIdFromLocalStorage = () => {
 };
 
 const includeUserIdInRequest = (data) => {
-    data["userId"] = getUserIdFromLocalStorage();
-    return data;
-
+  data["userId"] = getUserIdFromLocalStorage();
+  return data;
 };
 const UserIdManagementUtil = {
   setUserIdInLocalStorage,

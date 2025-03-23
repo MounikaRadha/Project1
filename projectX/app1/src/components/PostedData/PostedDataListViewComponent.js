@@ -25,7 +25,8 @@ export const PostedDataItem = ({ postedDataItem }) => {
       )}
       {postedDataItem?.endPoint?.endPoint && (
         <p className="my-label">
-          <span className="label">Endpoint:</span> {postedDataItem.endPoint.endPoint}
+          <span className="label">Endpoint:</span>{" "}
+          {postedDataItem.endPoint.endPoint}
         </p>
       )}
       {postedDataItem?.postData && (

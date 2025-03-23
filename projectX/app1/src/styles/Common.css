@@ -15,7 +15,6 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   height: fit-content; /* Ensures it does not grow */
   position: sticky;
- 
 }
 
 .list-section {
