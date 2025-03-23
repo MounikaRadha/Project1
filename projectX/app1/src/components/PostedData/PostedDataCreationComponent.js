@@ -21,10 +21,7 @@ const PostedDataCreationComponent = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
         <label>endpoint:</label>
         <input type="text" name="endpoint" {...register("endpoint")} className="input-field"  />
- 
-       <label>userId:</label>
-        <input type="text" name="userId" {...register("userId")} className="input-field" />
-  
+        
        <label> postData:</label>
         <input type="text" name="postData" {...register("postData")} className="input-field"  />
  
