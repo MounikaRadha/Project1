@@ -33,7 +33,7 @@ public class JWTAuthorizationFilter  extends OncePerRequestFilter {
                 //search for auth header
                 //parse token
                 //if valid user set it in context
-                APIToken apiToken = jwtTokenService.parseToken(authHeader.substring(7));
+                APIToken apiToken = jwtTokenService.parseToken(authHeader);
                 UserContext.setCurrentUser(userService.getUserById(apiToken.getUserId()));
             } else if (userId != null && password != null) {
                 //search for userId,password
