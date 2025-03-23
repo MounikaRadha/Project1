@@ -30,7 +30,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Page<UserDTO> index(@RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
-                               @RequestParam(name = "size", required = false, defaultValue = "2") int pageSize) {
+                               @RequestParam(name = "size", required = false, defaultValue = "10") int pageSize) {
         return userService.findAllUsers(pageNumber, pageSize);
     }
 

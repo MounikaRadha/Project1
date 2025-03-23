@@ -44,9 +44,15 @@ public class PostedService {
         }
     }
 
-    public Page<PostedDataDTO> findAllPostedData(int pageNumber, int pageSize,Long endPointId) {
+    public Page<PostedDataDTO> findAllPostedData(int pageNumber, int pageSize, Long endPointId) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<PostedData> allPostedData = postedDataRepository.findPostsByEndPointId(endPointId,pageable);
+        Page<PostedData> allPostedData;
+        if (endPointId != null) {
+            allPostedData = postedDataRepository.findPostsByEndPointId(endPointId, pageable);
+        } else {
+            allPostedData = postedDataRepository.findAll(pageable);
+        }
+
         return allPostedData.map(postDataMapper::postDataToPostedDataDTO);
 
     }
@@ -72,9 +78,9 @@ public class PostedService {
         postedDataRepository.deleteById(postId);
     }
 
-    public Page<PostedDataDTO> findPostsByEndPointId(Long endPointId,int pageNumber, int pageSize) {
+    public Page<PostedDataDTO> findPostsByEndPointId(Long endPointId, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<PostedData> postedData=  postedDataRepository.findPostsByEndPointId(endPointId,pageable);
-        return  postedData.map(postDataMapper::postDataToPostedDataDTO);
+        Page<PostedData> postedData = postedDataRepository.findPostsByEndPointId(endPointId, pageable);
+        return postedData.map(postDataMapper::postDataToPostedDataDTO);
     }
 }
