@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import PostedDataService from "./PostedDataService";
+import '../../styles/Common.css'
+
 const PostedDataCreationComponent = () => {
   const sendPostedDataCreationRequest = PostedDataService.useCreatePostedData();
   const {
@@ -14,25 +16,27 @@ const PostedDataCreationComponent = () => {
   };
 
   return (
-    <>
-      <p>posted Data creation component</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        endpoint:
-        <input type="text" name="endpoint" {...register("endpoint")} />
-        <br />
-        userId:
-        <input type="text" name="userId" {...register("userId")} />
-        <br />
-        postData:
-        <input type="text" name="postData" {...register("postData")} />
-        <br />
-        tags:
-        <input type="text" name="tags" {...register("tags")} />
-        <br />
-        <button>ceation post data</button>
+    <div className="creation-container">
+       <h2>Create Post Data</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
+        <label>endpoint:</label>
+        <input type="text" name="endpoint" {...register("endpoint")} className="input-field"  />
+ 
+       <label>userId:</label>
+        <input type="text" name="userId" {...register("userId")} className="input-field" />
+  
+       <label> postData:</label>
+        <input type="text" name="postData" {...register("postData")} className="input-field"  />
+ 
+       <label> tags:</label>
+        <input type="text" name="tags" {...register("tags")} className="input-field" />
+  
+        <button type="submit" className="create-btn">ceation post data</button>
+        <button type="button" className="reset-btn" onClick={() => reset()}>Reset</button>
+    
       </form>
-      <button onClick={() => reset()}>reset</button>
-    </>
+    
+    </div>
   );
 };
 
