@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostedDataRepository extends JpaRepository<PostedData, Long> {
-    @Query("select p from posted_data p where p.endPoint.id=:id")
+    @Query("select p from posted_data p where p.endPoint.id=:id order by  p.id desc ")
     Page<PostedData> findPostsByEndPointId(@Param("id") Long endPointId, Pageable pageable);
 
-
+    @Query("select p from posted_data p order by p.id desc")
+    Page<PostedData> findAllOrderByIdDesc(Pageable pageable);
 }

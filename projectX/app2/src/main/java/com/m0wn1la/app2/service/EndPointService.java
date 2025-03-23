@@ -36,7 +36,7 @@ public class EndPointService {
     public Page<EndPointDTO> findAllEndPoints(int pageNumber, int pageSize) {
         log.info("thread name is in service " + Thread.currentThread().getName());
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<EndPoint> endPoints = endPointRepository.findAll(pageable);
+        Page<EndPoint> endPoints = endPointRepository.findAllOrderByIdDesc(pageable);
         Page<EndPointDTO> endPointDTOS = endPoints.map(endPoint -> endPointMapper.endPointToEndPointDTO(endPoint));
         return endPointDTOS;
     }

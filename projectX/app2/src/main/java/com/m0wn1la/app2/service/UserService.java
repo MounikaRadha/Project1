@@ -99,7 +99,7 @@ public class UserService {
     public Page<UserDTO> findAllUsers(int pageNumber, int pageSize) {
         log.debug("finding all users");
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<User> users = userRepository.findAll(pageable);
+        Page<User> users = userRepository.findAllOrderById(pageable);
         Page<UserDTO> users1 = users.map(user -> userMapper.userToUserDTO(user));
         return users1;
     }

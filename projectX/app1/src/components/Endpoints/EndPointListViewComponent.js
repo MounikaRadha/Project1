@@ -23,6 +23,9 @@ export const EndPointItem = ({ endPointItem }) => {
   return (
     <div className="my-card">
       <p className="my-label">
+        <span className="label">Endpoint id: {endPointItem?.id}</span>
+      </p>
+      <p className="my-label">
         <a href={URL_Constants.BASE_NAME+URL_Constants.POSTED_DATA_PATH+"?endPointId="+endPointItem?.id}>
         <span className="label">Endpoint:</span> {endPointItem?.endPoint}
         </a>

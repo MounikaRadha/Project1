@@ -50,7 +50,7 @@ public class PostedService {
         if (endPointId != null) {
             allPostedData = postedDataRepository.findPostsByEndPointId(endPointId, pageable);
         } else {
-            allPostedData = postedDataRepository.findAll(pageable);
+            allPostedData = postedDataRepository.findAllOrderByIdDesc(pageable);
         }
 
         return allPostedData.map(postDataMapper::postDataToPostedDataDTO);
