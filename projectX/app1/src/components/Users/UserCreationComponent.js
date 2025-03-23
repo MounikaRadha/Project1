@@ -20,7 +20,7 @@ const UserCreationComponent = () => {
     <div className="creation-container">
       <h2>Resgister/login user</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
-        <label>username:</label>
+        <label>username/id:</label>
         <input
           type="text"
           name="userName"
