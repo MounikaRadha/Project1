@@ -3,7 +3,7 @@ const EndPointListViewComponent = ({ endPointsList = [] }) => {
     <>
       endpoint list view component
       {endPointsList.length > 0 ? (
-        endPointsList?.map((endpoint) => <p>{endpoint?.id}</p>)
+        endPointsList?.map((endpoint) => <p>{endpoint["endPoint"]}</p>)
       ) : (
         <p>no endpoints</p>
       )}

@@ -1,3 +1,4 @@
+import EndPointCreationComponent from "./EndPointCreationComponent";
 import EndPointListViewComponent from "./EndPointListViewComponent"
 import EndPointService from "./EndPointService"
 
@@ -6,6 +7,7 @@ const EndPointComponent=()=>{
 return (<>
 <p>endpoint component</p>
 <EndPointListViewComponent endPointsList={endPointsList}/>
+<EndPointCreationComponent/>
 </>)
 }
 export default EndPointComponent
