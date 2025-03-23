@@ -7,6 +7,7 @@ const get = async (url) => {
     return res;
   } catch (e) {
     console.log("error while making get request for url " + url + e);
+    
   }
 };
 const post = async (url, payload) => {
@@ -15,7 +16,10 @@ const post = async (url, payload) => {
     const res = await axios.post(url, payload,config);
     return res;
   } catch (e) {
+    
     console.log("error while making post request for url " + url + e);
+    return e?.response?.data;
+    
   }
 };
 const ApiService = { get, post };
