@@ -4,7 +4,7 @@ import Counter from "../components/Counter";
 import UsersComponent from "../components/Users/UsersComponent";
 import EndPointComponent from "../components/Endpoints/EndPointComponent";
 import PostedDataComponent from "../components/PostedData/PostedDataComponent";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar";
 const AppRouter = () => {
   return (
     <>

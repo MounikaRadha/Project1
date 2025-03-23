@@ -1,5 +1,5 @@
-import URL_Constants from "../../constants/Url_Constants";
-import "./Navbar.css"; // Import CSS file
+import URL_Constants from "../constants/Url_Constants";
+import "../styles/Navbar.css"
 
 const Navbar = () => {
     return (
