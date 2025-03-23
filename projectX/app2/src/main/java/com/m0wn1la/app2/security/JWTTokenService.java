@@ -29,9 +29,7 @@ public class JWTTokenService {
                     .setSigningKey(JWT_SECRET)
                     .parseClaimsJws(token)
                     .getBody();
-            String password = body.get("password", String.class);
             Long userId = body.get("userId", Long.class);
-            validateUser(userId, password);
             return new APIToken(userId == null ? 0 : userId);
         } catch (Exception e) {
             throw new InvalidJwtTokenException("invalid jwt token provided please check once");
