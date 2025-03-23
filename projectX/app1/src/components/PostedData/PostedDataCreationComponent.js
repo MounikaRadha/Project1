@@ -11,8 +11,8 @@ const PostedDataCreationComponent = () => {
 
   const onSubmit = (data) => {
     sendPostedDataCreationRequest(data);
-    console.log("post data creation on submit called");
   };
+
   return (
     <>
       <p>posted Data creation component</p>

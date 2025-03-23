@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import UserService from "./UserService";
 const UserCreationComponent = () => {
-
   const sendUserCreationRequest = UserService.useCreateUser();
   const {
     handleSubmit,
@@ -12,9 +11,8 @@ const UserCreationComponent = () => {
 
   const onSubmit = async (data) => {
     //will handle the form take data and call creation rquest
-   const res= await sendUserCreationRequest(data);
+    const res = await sendUserCreationRequest(data);
   };
-
 
   return (
     <>

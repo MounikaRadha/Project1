@@ -9,7 +9,7 @@ const UsersComponent = () => {
     <>
       <h1>Users Page</h1>
       <UsersListViewComponent usersList={userData} />
-      <UserCreationComponent/>
+      <UserCreationComponent />
     </>
   );
 };
