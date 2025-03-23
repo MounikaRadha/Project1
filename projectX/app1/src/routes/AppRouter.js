@@ -15,6 +15,10 @@ const AppRouter = () => {
       <Route path="/users" Component={UsersComponent}/>
       <Route path="/endpoint" Component={EndPointComponent}/>
       <Route path="/postedData" Component={PostedDataComponent}/>
+      <Route path="*" Component={Home}/>
+      <Route path="/" Component={Home}/>
+      <Route path="" Component={Home}/>
+
     </Routes>
     </>
   );
