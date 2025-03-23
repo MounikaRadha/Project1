@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class EndPointDTO {
+    private Long id;
     private String endPoint;
 }

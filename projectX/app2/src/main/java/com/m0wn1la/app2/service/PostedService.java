@@ -17,6 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class PostedService {
@@ -67,5 +70,11 @@ public class PostedService {
 
     public void deletePostById(Long postId) {
         postedDataRepository.deleteById(postId);
+    }
+
+    public Page<PostedDataDTO> findPostsByEndPointId(Long endPointId,int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<PostedData> postedData=  postedDataRepository.findPostsByEndPointId(endPointId,pageable);
+        return  postedData.map(postDataMapper::postDataToPostedDataDTO);
     }
 }

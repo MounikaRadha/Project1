@@ -4,15 +4,19 @@ import com.m0wn1la.app2.Enums.UserInfoLocation;
 import com.m0wn1la.app2.annotation.ValidateRequest;
 import com.m0wn1la.app2.config.PrivateURLConstants;
 import com.m0wn1la.app2.dto.EndPointDTO;
+import com.m0wn1la.app2.dto.PostedDataDTO;
 import com.m0wn1la.app2.exception.ResourceNotFoundException;
 import com.m0wn1la.app2.mapper.EndPointMapper;
 import com.m0wn1la.app2.request.EndPointPostRequest;
 import com.m0wn1la.app2.service.EndPointService;
+import com.m0wn1la.app2.service.PostedService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Log4j2
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class EndPointController {
     private final EndPointService endPointService;
     private final EndPointMapper endPointMapper;
+    private final PostedService postedService;
 
     @RequestMapping(method = RequestMethod.POST)
     @ValidateRequest(positionToValidate = "0", category = UserInfoLocation.METHOD_ARGUMENTS)
@@ -52,5 +57,10 @@ public class EndPointController {
         endPointService.deleteEndPoint(endPointId);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/by/{id}")
+    public Page<PostedDataDTO> getPostDataDTOSByEndPointId(@PathVariable("id") Long endPointId,@RequestParam(name = "page", required = false, defaultValue = "0") int pageNumber,
+                                                           @RequestParam(name = "size", required = false, defaultValue = "2") int pageSize) {
+        return postedService.findPostsByEndPointId(endPointId,pageNumber,pageSize);
+    }
 
 }
