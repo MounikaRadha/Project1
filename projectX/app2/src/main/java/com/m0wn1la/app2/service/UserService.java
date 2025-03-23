@@ -54,7 +54,7 @@ public class UserService {
         String token = jwtTokenService.generateToken(new APIToken(userId));
         UserDTO userDTO = new UserDTO();
         userDTO.setId(userId);
-        userDTO.setUsername("token:" + token);
+        userDTO.setUsername("Authorization:" + token);
         return userDTO;
     }
 
