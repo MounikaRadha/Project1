@@ -22,14 +22,23 @@ const useCreateUser = () => {
   const sendUserCreationRequest = async (data) => {
     const res = await ApiService.post(URL_Constants.USERS, data);
     if (res?.status === 200) {
-      window.alert("user created");
+      window.alert(getSuccessMessage(res));
     } else {
-      window.alert("creation of user failed");
+      window.alert(res?.message || "invaid creds provided");
     }
     return res;
   };
   return sendUserCreationRequest;
 };
+
+const getSuccessMessage=(res)=>{
+  if(res?.data?.username?.includes("token")){
+    return "user logged in successfully"
+  }
+  else{
+    return "user created successfully"
+  }
+}
 
 const UserService = { useFindAllUsers, useCreateUser };
 export default UserService;

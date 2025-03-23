@@ -18,13 +18,13 @@ const UserCreationComponent = () => {
 
   return (
     <div className="creation-container">
-      <h2>Create user</h2>
+      <h2>Resgister/login user</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
         <label>username:</label>
         <input type="text" name="userName" {...register("username")}  className="input-field"/>
        <label> password:</label>
         <input type="text" name="password" {...register("password")}  className="input-field"/>
-        <button  type="submit" className="create-btn">register user</button>
+        <button  type="submit" className="create-btn">register/login</button>
       
         <button  type="submit" className="reset-btn" onClick={() => reset()}>Reset</button>
       </form>
