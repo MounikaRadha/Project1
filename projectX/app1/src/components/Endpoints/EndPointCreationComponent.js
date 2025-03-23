@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import EndPointService from "./EndPointService";
+import '../../styles/Common.css'
+
 const EndPointCreationComponent = () => {
   const {
     handleSubmit,
@@ -7,25 +9,28 @@ const EndPointCreationComponent = () => {
     register,
     reset,
   } = useForm();
+
+  
   const sendEndPointCreationRequest = EndPointService.useCreateEndPoint();
   const onSubmit = async (data) => {
-    const res = sendEndPointCreationRequest(data);
+    sendEndPointCreationRequest(data);
   };
 
   return (
-    <>
-      <p>endpoint creation component</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        endpoint:
-        <input type="text" name="endPoint" {...register("endPoint")} />
-        <br />
-        userId:
-        <input type="userId" name="userId" {...register("userId")} />
-        <br />
-        <button>create endpoint</button>
+    <div className="creation-container">
+      <h2>Create Endpoint</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="creation-form">
+        <label>Endpoint:</label>
+        <input type="text" {...register("endPoint")} className="input-field" />
+        
+        <label>User ID:</label>
+        <input type="text" {...register("userId")} className="input-field" />
+        
+        <button type="submit" className="create-btn">Create Endpoint</button>
+        <button type="button" className="reset-btn" onClick={() => reset()}>Reset</button>
       </form>
-      <button onClick={() => reset()}>reset</button>
-    </>
+    </div>
   );
 };
+
 export default EndPointCreationComponent;

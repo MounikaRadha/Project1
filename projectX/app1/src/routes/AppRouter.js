@@ -5,6 +5,7 @@ import UsersComponent from "../components/Users/UsersComponent";
 import EndPointComponent from "../components/Endpoints/EndPointComponent";
 import PostedDataComponent from "../components/PostedData/PostedDataComponent";
 import Navbar from "../components/Navbar";
+import URL_Constants from "../constants/Url_Constants";
 const AppRouter = () => {
   return (
     <>
@@ -12,9 +13,9 @@ const AppRouter = () => {
     <Routes>
       <Route path="/" Component={Home} />
       <Route path="/counter" Component={Counter}/>
-      <Route path="/users" Component={UsersComponent}/>
-      <Route path="/endpoint" Component={EndPointComponent}/>
-      <Route path="/postedData" Component={PostedDataComponent}/>
+      <Route path={URL_Constants.USERS_PATH} Component={UsersComponent}/>
+      <Route path={URL_Constants.END_POINTS_PATH} Component={EndPointComponent}/>
+      <Route path={URL_Constants.POSTED_DATA_PATH} Component={PostedDataComponent}/>
       <Route path="*" Component={Home}/>
       <Route path="/" Component={Home}/>
       <Route path="" Component={Home}/>

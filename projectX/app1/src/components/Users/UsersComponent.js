@@ -1,16 +1,20 @@
 import UsersListViewComponent from "./UsersListViewComponent";
 import UserService from "./UserService";
 import UserCreationComponent from "./UserCreationComponent";
+import '../../styles/Common.css'
 
 const UsersComponent = () => {
   const userData = UserService.useFindAllUsers();
 
   return (
-    <>
-      <h1>Users Page</h1>
-      <UsersListViewComponent usersList={userData} />
-      <UserCreationComponent />
-    </>
+    <div className="my-container">
+      <div className="creation-section">
+        <UserCreationComponent />
+      </div>
+      <div className="list-section">
+        <UsersListViewComponent usersList={userData} />
+      </div>
+    </div>
   );
 };
 

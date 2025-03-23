@@ -20,7 +20,7 @@ const useCreateEndPoint = () => {
   //return a function which takes request data and send post request
   const sendEndPointCreationRequest = async (data) => {
     const res = await ApiService.post(URL_Constants.END_POINTS, data);
-    if (res.status == 200) {
+    if (res?.status === 200) {
       window.alert("endpoint created");
     } else {
       window.alert("endpoint creation failed");

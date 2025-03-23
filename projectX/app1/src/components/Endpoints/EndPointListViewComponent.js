@@ -1,21 +1,25 @@
-import NoDataInDb from '../NoDataInDb'
+import NoDataInDb from '../NoDataInDb';
+
 
 const EndPointListViewComponent = ({ endPointsList = [] }) => {
   return (
-    <>
-      endpoint list view component
+    <div className="list-container">
+      <h2>Endpoint List</h2>
       {endPointsList.length > 0 ? (
-        endPointsList?.map((endpoint) => <EndPointItem endPointItem={endpoint}/>)
+        endPointsList.map((endpoint, index) => <EndPointItem key={index} endPointItem={endpoint} />)
       ) : (
-        <NoDataInDb modalType={"End poin"}/>
+        <NoDataInDb modalType={"End point"} />
       )}
-    </>
+    </div>
   );
 };
+
 export default EndPointListViewComponent;
 
-export const EndPointItem=({endPointItem})=>{
-  return (<>
-  <p>endpoint:{endPointItem?.["endPoint"]}</p>
-  </>)
-}
+export const EndPointItem = ({ endPointItem }) => {
+  return (
+    <div className="endpoint-item">
+      <p><strong>Endpoint:</strong> {endPointItem?.["endPoint"]}</p>
+    </div>
+  );
+};
