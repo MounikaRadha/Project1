@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import ApiService from "../../api/ApiService";
 import URL_Constants from "../../constants/Url_Constants";
-
+import JwtTokenManagementUtil from '../../utils/JwtTokenManagementUtil'
+import AppConstants from "../../constants/AppConstants";
 const useFindAllUsers = () => {
   //when userFindAllUsers hook is called useEffect runs and users will be fetched and data will returned
   const [userData, setUserData] = useState();
@@ -33,6 +34,7 @@ const useCreateUser = () => {
 
 const getSuccessMessage=(res)=>{
   if(res?.data?.username?.includes("token")){
+    JwtTokenManagementUtil.setJwtToken(res?.data?.username.substring(AppConstants.JWT_TOKEN_KEY_LENGTH))
     return "user logged in successfully"
   }
   else{
