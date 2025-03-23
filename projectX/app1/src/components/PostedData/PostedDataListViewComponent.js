@@ -10,7 +10,7 @@ const PostedDataListViewComponent = ({ postedDataList = [] }) => {
 export const PostedDataItem = ({ postedDataItem }) => {
   return (
     <>
-      <p>postId:{postedDataItem?.["postedId"]}</p>
+      <p>postId:{postedDataItem?.["postId"]}</p>
       <p>endpoint:{postedDataItem?.["endPoint"]["endPoint"]}</p>
       <p>postData:{postedDataItem?.["postData"]}</p>
       <p>tags:{postedDataItem?.["tags"]}</p>

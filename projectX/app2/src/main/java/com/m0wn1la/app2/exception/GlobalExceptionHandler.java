@@ -31,4 +31,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(apiErrorDTO);
     }
 
+    @ExceptionHandler({DuplicateEntryException.class})
+    public ResponseEntity<Object> handleGlobalException(DuplicateEntryException exception) {
+        APIErrorDTO apiErrorDTO = new APIErrorDTO();
+        apiErrorDTO.setCode(exception.getMessage());
+        String msg=exception.getDuplicatedModal()+"with "+exception.getDuplicatedFieldValue()+"as "+exception.getDuplicatedFieldName()+"already exists";
+        apiErrorDTO.setMessage(msg);
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(apiErrorDTO);
+    }
+
+
 }

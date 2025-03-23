@@ -11,7 +11,7 @@ const PostedDataComponent = () => {
         <PostedDataCreationComponent />
       </div>
       <div className="list-section">
-        <PostedDataListViewComponent postedDataList={postedData} />\
+        <PostedDataListViewComponent postedDataList={postedData} />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const useCreateUser = () => {
   //will make post request and response will be returnend
   const sendUserCreationRequest = async (data) => {
     const res = await ApiService.post(URL_Constants.USERS, data);
-    if (res.status === 200) {
+    if (res?.status === 200) {
       window.alert("user created");
     } else {
       window.alert("creation of user failed");

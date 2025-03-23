@@ -6,5 +6,6 @@ import lombok.Data;
 public class APIErrorDTO {
     private String error;
     private String code;
+    private String message;
 }
 
