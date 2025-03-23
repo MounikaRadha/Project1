@@ -3,6 +3,7 @@ package com.m0wn1la.app2.exception;
 import com.m0wn1la.app2.dto.APIErrorDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,6 +42,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(apiErrorDTO);
     }
+
+    @ExceptionHandler({DataIntegrityViolationException.class})
+    public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
+        if(!exception.getMessage().contains("Duplicate entry")){
+            throw  exception;
+        }
+        APIErrorDTO apiErrorDTO = new APIErrorDTO();
+        apiErrorDTO.setCode("duplicate entry found");
+        apiErrorDTO.setMessage("please avoid duplicate entry..");
+        return ResponseEntity
+                .status(421)
+                .body(apiErrorDTO);
+    }
+
+
 
 
 }
