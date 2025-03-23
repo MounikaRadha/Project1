@@ -9,8 +9,7 @@ const isUserLoggedIn=()=>{
     }
 }
 const logOutUser=()=>{
-    localStorage.removeItem(AppConstants.USER_ID_KEY);
-    localStorage.removeItem(AppConstants.JWT_TOKEN_KEY)
+    localStorage.clear()
 }
 
 const UserLoginManagementUtil={isUserLoggedIn,logOutUser}
