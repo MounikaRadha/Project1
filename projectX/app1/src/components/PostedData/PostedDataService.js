@@ -7,7 +7,7 @@ import UserIdManagementUtil from "../../utils/UserIdManagementUtil";
 const useFindAllPostedData = () => {
   const [postedData, setPostedData] = useState();
   const fetchAllPostedData = async () => {
-    const res = await ApiService.get(URL_Constants.POSTED_DATA);
+    const res = await ApiService.get(URL_Constants.POSTED_DATA+window?.location?.search);
     setPostedData(res?.data?.content);
   };
   useEffect(() => {

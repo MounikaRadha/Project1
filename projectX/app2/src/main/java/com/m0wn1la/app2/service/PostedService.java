@@ -44,9 +44,9 @@ public class PostedService {
         }
     }
 
-    public Page<PostedDataDTO> findAllPostedData(int pageNumber, int pageSize) {
+    public Page<PostedDataDTO> findAllPostedData(int pageNumber, int pageSize,Long endPointId) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<PostedData> allPostedData = postedDataRepository.findAll(pageable);
+        Page<PostedData> allPostedData = postedDataRepository.findPostsByEndPointId(endPointId,pageable);
         return allPostedData.map(postDataMapper::postDataToPostedDataDTO);
 
     }
