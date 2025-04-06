@@ -47,11 +47,19 @@ func copyDir(dirName string, wg *sync.WaitGroup) {
 	}
 
 }
-
-func main() {
+func callCopyDirByCmd() {
+	if len(os.Args) != 2 {
+		fmt.Println("please provide a argument which is the directory to copy ")
+		return
+	}
+	var dirName = os.Args[1]
 	var wg sync.WaitGroup
 	wg.Add(1)
-	copyDir("Dir1", &wg)
+	copyDir(dirName, &wg)
 	wg.Wait()
 	fmt.Print("\nin copy go file")
+}
+
+func main() {
+	callCopyDirByCmd()
 }
