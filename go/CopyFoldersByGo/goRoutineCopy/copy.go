@@ -39,7 +39,7 @@ func copyDir(dirName string, wg *sync.WaitGroup) {
 		if item.IsDir() {
 			copyDir(path1, &newWg)
 			newWg.Wait()
-			return
+			continue
 		}
 		copyMyFile(destFolder+path1, path1, &newWg)
 
