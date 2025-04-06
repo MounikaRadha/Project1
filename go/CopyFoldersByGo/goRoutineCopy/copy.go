@@ -22,8 +22,10 @@ func copyMyFile(destPath, srcPath string, wg *sync.WaitGroup) {
 	err := os.MkdirAll(filepath.Dir(destPath), 0777)
 	handleErr(err)
 	var source, err1 = os.Open(srcPath)
+	defer source.Close()
 	handleErr(err1)
 	var destination, err2 = os.Create(destPath)
+	defer destination.Close()
 	handleErr(err2)
 	io.Copy(destination, source)
 }
@@ -33,15 +35,13 @@ func copyDir(dirName string, wg *sync.WaitGroup) {
 	var items, err = os.ReadDir(dirName)
 	handleErr(err)
 	for _, item := range items {
-		var newWg sync.WaitGroup
-		newWg.Add(1)
+		wg.Add(1)
 		var path1 string = dirName + fileSep + item.Name()
 		if item.IsDir() {
-			copyDir(path1, &newWg)
-			newWg.Wait()
+			go copyDir(path1, wg)
 			continue
 		}
-		copyMyFile(destFolder+path1, path1, &newWg)
+		go copyMyFile(destFolder+path1, path1, wg)
 
 	}
 
