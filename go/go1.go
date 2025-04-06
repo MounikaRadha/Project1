@@ -47,6 +47,14 @@ func invokeCopy(){
 func main() {
 	// createDummyFiles(5)
 	// writeToFiles()
-	invokeCopy()
+	// invokeCopy()
+	//call copyDir in main
+	//copyDir is recursive 
+	//iterate over the os.ReadDir
+	//for each item in the directory check if it is file or dir
+	//if it is dir call copy dir again
+	//each copyDir will be a new go routine 
+	//the parent go routine will wait for child go routines
+	//when it is file we call copy File as well in a new go routine
 	fmt.Print("hello go")
 }
