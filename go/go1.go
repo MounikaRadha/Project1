@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 )
@@ -31,8 +32,21 @@ func writeToFiles() {
 		defer file.Close()
 	}
 }
+func copyFiles(destPath,srcPath string){
+	var source,err1 =os.Open(srcPath)
+	handleErr(err1)
+	var destination,err2=os.Create(destPath)
+	handleErr(err2)
+	io.Copy(destination,source)
+}
+func invokeCopy(){
+	var sourcePath string=dirName+fileSep+"myFile0.txt"
+	var destPath string=dirName+fileSep+"newOne.txt"
+	copyFiles(destPath,sourcePath)
+}
 func main() {
-	createDummyFiles(5)
-	writeToFiles()
+	// createDummyFiles(5)
+	// writeToFiles()
+	invokeCopy()
 	fmt.Print("hello go")
 }
