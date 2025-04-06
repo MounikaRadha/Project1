@@ -4,7 +4,6 @@ import "fmt"
 import "io"
 import "path/filepath"
 import "os"
-import "strconv"
 import "sync"
 import "time"
 
@@ -33,8 +32,7 @@ func copyDir(dirName string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	var items, err = os.ReadDir(dirName)
 	handleErr(err)
-	for index, item := range items {
-		fmt.Printf("in the for loop of " + dirName + strconv.Itoa(index))
+	for _, item := range items {
 		var newWg sync.WaitGroup
 		newWg.Add(1)
 		var path1 string = dirName + fileSep + item.Name()
