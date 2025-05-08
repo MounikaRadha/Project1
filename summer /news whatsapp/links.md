@@ -1,2 +1,3 @@
 - https://jxausea.medium.com/spring-boot-integrated-python-engine-quick-start-demo-24d3f96cc4aa
 - https://www.baeldung.com/spring-controller-vs-restcontroller
+- https://mvnrepository.com/artifact/org.projectlombok/lombok

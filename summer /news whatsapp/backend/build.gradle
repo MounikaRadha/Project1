@@ -22,6 +22,10 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	annotationProcessor 'org.projectlombok:lombok:1.18.38'
+	compileOnly 'org.projectlombok:lombok:1.18.38'
+	//above 2 for required args consturctor
+	implementation 'org.python:jython-standalone:2.7.2'
 }
 
 tasks.named('test') {
