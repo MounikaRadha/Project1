@@ -5,3 +5,4 @@
 - https://www.reddit.com/r/webdev/comments/njlkk6/can_static_websites_use_an_api_for_users_to/
 - npm create vite@latest my-react-app -- --template react
 - https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+- https://www.atlassian.com/data/sql/how-indexing-works#:~:text=Indexing%20makes%20columns%20faster%20to,row%20until%20it%20finds%20it.
