@@ -4,3 +4,4 @@
 - https://medium.com/@chamlinid/integrate-java-and-python-code-bases-1c4819fe19da
 - https://www.reddit.com/r/webdev/comments/njlkk6/can_static_websites_use_an_api_for_users_to/
 - npm create vite@latest my-react-app -- --template react
+- https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
