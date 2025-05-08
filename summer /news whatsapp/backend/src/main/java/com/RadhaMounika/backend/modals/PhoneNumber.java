@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(schema = "phone_numbers")
 public class PhoneNumber {
 
     @Id
