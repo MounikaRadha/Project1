@@ -6,16 +6,27 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Log4j2
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PhoneNumberService {
     private final PhoneNumberRepository phoneNumberRepository;
-    public  String addPhoneNumber(String phoneNumber){
-       log.info("the phone number is: "+phoneNumber);
+
+    public String addPhoneNumber(String phoneNumber) {
+        log.info("the phone number is: " + phoneNumber);
+        if (this.checkPhoneNumberExists(phoneNumber)) {
+            return "phone number already exists";
+        }
         PhoneNumber phoneNumber1 = new PhoneNumber();
         phoneNumber1.setUserPhoneNumber(phoneNumber);
-       phoneNumberRepository.save(phoneNumber1);
-       return "phone number added";
+        phoneNumberRepository.save(phoneNumber1);
+        return "phone number added";
+    }
+
+    public boolean checkPhoneNumberExists(String phoneNumber) {
+        log.info("the phone number is: " + phoneNumber);
+        PhoneNumber PhoneNumber;
+        return phoneNumberRepository.existsPhoneNumberByUserPhoneNumber(phoneNumber);
     }
 }
