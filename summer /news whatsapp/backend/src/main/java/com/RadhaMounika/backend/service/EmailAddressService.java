@@ -25,7 +25,7 @@ public class EmailAddressService {
         User user = new User();
         user.setUserEmailAddress(userEmailAddress);
         userRepository.save(user);
-        smtpEmailService.sendEmail(userEmailAddress,newsService.getTodayNews());
+        smtpEmailService.sendEmail(userEmailAddress, newsService.getTodayNews());
         return "email address added and news sent successfully";
     }
 

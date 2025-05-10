@@ -1,7 +1,6 @@
 package com.RadhaMounika.backend.service;
 
 import com.RadhaMounika.backend.repository.NewsRepository;
-import com.RadhaMounika.backend.repository.UserRepository;
 import com.RadhaMounika.backend.service.NewsSaver.NewsSaverServiceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -10,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
 @Log4j2
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NewsService {
     private final NewsSaverServiceFactory newsSaverServiceFactory;
     private final NewsRepository newsRepository;
+
     public String scrapeAndSaveNews() {
         //scrapes news and returns the scraped news as string
         try {
@@ -34,8 +35,8 @@ public class NewsService {
             }
 
             int exitCode = process.waitFor();
-            String news=output.toString().replace("<br>","\n");
-            if(exitCode==0){
+            String news = output.toString().replace("<br>", "\n");
+            if (exitCode == 0) {
                 log.info("saving news...");
                 saveNews(news);
             }
@@ -46,10 +47,12 @@ public class NewsService {
             return "Exception occurred: " + e.getMessage();
         }
     }
+
     public void saveNews(String news) {
         newsSaverServiceFactory.getNewsSaverService().saveNews(news);
     }
-    public String getTodayNews(){
+
+    public String getTodayNews() {
         return newsRepository.findTodayNews();
     }
 }

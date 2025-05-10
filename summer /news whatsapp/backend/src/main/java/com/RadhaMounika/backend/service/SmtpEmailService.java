@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SmtpEmailService {
     @Value("${spring.mail.username}")
-    private  String fromUsername;
+    private String fromUsername;
 
     @Value("${spring.mail.subject}")
-    private  String subject;
+    private String subject;
 
     private final JavaMailSender mailSender;
-    public void sendEmail(String to,String body){
+
+    public void sendEmail(String to, String body) {
         org.springframework.mail.SimpleMailMessage message = new org.springframework.mail.SimpleMailMessage();
         message.setFrom(fromUsername);
         message.setTo(to);

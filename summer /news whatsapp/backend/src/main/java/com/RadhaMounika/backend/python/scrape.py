@@ -4,7 +4,6 @@ from urllib.request import urlopen
 
 
 def scrape():
-
     url = "https://www.eenadu.net/world"
     ssl_context = ssl._create_unverified_context()
     page = urlopen(url, context=ssl_context)

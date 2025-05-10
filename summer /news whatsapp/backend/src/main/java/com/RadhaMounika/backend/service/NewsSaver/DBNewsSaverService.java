@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DBNewsSaverService implements NewsSaverService {
     private final NewsRepository newsRepository;
+
     @Override
     public void saveNews(String news) {
         News newsObj = new News();

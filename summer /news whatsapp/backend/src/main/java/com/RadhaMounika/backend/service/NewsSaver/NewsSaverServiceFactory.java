@@ -1,9 +1,7 @@
 package com.RadhaMounika.backend.service.NewsSaver;
 
 
-import com.RadhaMounika.backend.service.NewsService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
