@@ -1,1 +1,0 @@
-create index user_phone_numbers_asc on phone_numbers(user_phone_number )

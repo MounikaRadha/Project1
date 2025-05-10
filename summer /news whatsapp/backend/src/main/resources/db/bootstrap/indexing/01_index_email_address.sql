@@ -1,0 +1,1 @@
+create index user_email_address_asc on  users(user_email_address )
