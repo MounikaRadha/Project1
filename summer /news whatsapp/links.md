@@ -8,3 +8,4 @@
 - https://www.atlassian.com/data/sql/how-indexing-works#:~:text=Indexing%20makes%20columns%20faster%20to,row%20until%20it%20finds%20it.
 - https://medium.com/@bshiramagond/jpa-with-spring-boot-a-comprehensive-guide-with-examples-e07da6f3d385
 - https://www.baeldung.com/spring-data-exists-query
+- https://www.geeksforgeeks.org/spring-boot-sending-email-via-smtp/

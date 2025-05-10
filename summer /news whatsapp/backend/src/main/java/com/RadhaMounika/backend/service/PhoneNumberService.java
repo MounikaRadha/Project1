@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PhoneNumberService {
     private final PhoneNumberRepository phoneNumberRepository;
+    private final EmailService emailService;
 
     public String addPhoneNumber(String phoneNumber) {
         log.info("the phone number is: " + phoneNumber);
@@ -21,6 +22,7 @@ public class PhoneNumberService {
         PhoneNumber phoneNumber1 = new PhoneNumber();
         phoneNumber1.setUserPhoneNumber(phoneNumber);
         phoneNumberRepository.save(phoneNumber1);
+        emailService.sendEmail(phoneNumber,"dummy body");
         return "phone number added";
     }
 
