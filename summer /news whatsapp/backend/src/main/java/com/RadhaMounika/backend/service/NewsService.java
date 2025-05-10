@@ -1,13 +1,20 @@
 package com.RadhaMounika.backend.service;
 
+import com.RadhaMounika.backend.service.NewsSaver.NewsSaverServiceFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+@Log4j2
 @Service
-public class NewsScrapperService {
-    public String scrapeNews() {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class NewsService {
+    private final NewsSaverServiceFactory newsSaverServiceFactory;
+    public String scrapeAndSaveNews() {
+        //scrapes news and returns the scraped news as string
         try {
             ProcessBuilder pb = new ProcessBuilder("python3",
                     "//Users//radha.mounika//personalProjects//new//summer //news whatsapp//backend//src//main//java//com//RadhaMounika//backend//python//scrape.py");
@@ -24,12 +31,21 @@ public class NewsScrapperService {
             }
 
             int exitCode = process.waitFor();
-            return exitCode == 0 ? output.toString().replace("\n", "<br>") : "Error during scraping";
+            String news=output.toString().replace("\n", "<br>");
+            if(exitCode==0){
+                log.info("saving news...");
+                saveNews(news);
+            }
+            return exitCode == 0 ? news : "Error during scraping";
 
         } catch (Exception e) {
             e.printStackTrace();
             return "Exception occurred: " + e.getMessage();
         }
+    }
+    public void saveNews(String news) {
+        newsSaverServiceFactory.getNewsSaverService().saveNews(news);
+
     }
 }
 

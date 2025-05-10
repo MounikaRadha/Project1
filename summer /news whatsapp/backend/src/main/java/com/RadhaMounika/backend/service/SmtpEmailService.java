@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class EmailService {
+public class SmtpEmailService {
     @Value("${spring.mail.username}")
     private  String fromUsername;
 

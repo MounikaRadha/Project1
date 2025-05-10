@@ -1,7 +1,7 @@
 package com.RadhaMounika.backend.controller;
 
 import com.RadhaMounika.backend.service.EmailAddressService;
-import com.RadhaMounika.backend.service.NewsScrapperService;
+import com.RadhaMounika.backend.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class Home {
-    private final NewsScrapperService newsScrapperService;
+    private final NewsService newsService;
     private final EmailAddressService emailAddressService;
 
     @GetMapping("/home")
@@ -23,7 +23,7 @@ public class Home {
     @GetMapping("scrape")
     public String scrape() {
         //scrapes data using a python script and returns a string of news
-        return newsScrapperService.scrapeNews();
+        return newsService.scrapeAndSaveNews();
     }
 
     @GetMapping("addEmailAddress")

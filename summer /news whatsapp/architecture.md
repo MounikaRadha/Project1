@@ -9,3 +9,9 @@
 - we need to have a backend service which would send the scrapded news to phone numbers
 ## ..
 - integrate payment system ,so users before adding their phone number will need to pay money
+
+- a function to save news``
+- we have 2 ways to save news one in db another in s3 bucket
+- get news also 2 ways
+- send news a separate function 
+- we call send news from add email address function and in a cron/scheduler

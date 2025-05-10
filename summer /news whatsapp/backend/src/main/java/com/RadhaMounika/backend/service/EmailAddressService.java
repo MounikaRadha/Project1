@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EmailAddressService {
     private final UserRepository userRepository;
-    private final EmailService emailService;
+    private final SmtpEmailService smtpEmailService;
 
     public String addEmailAddress(String userEmailAddress) {
+        //add non existing email address to db
+        //send email
         log.info("the email address is: " + userEmailAddress);
         if (this.checkEmailAddressAlreadyExists(userEmailAddress)) {
             return " email address  already exists";
@@ -22,7 +24,7 @@ public class EmailAddressService {
         User user = new User();
         user.setUserEmailAddress(userEmailAddress);
         userRepository.save(user);
-        emailService.sendEmail(userEmailAddress,"dummy body");
+        smtpEmailService.sendEmail(userEmailAddress,"dummy body");
         return "email address added";
     }
 
