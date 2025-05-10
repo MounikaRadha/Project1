@@ -32,5 +32,10 @@ public class Home {
         return emailAddressService.addEmailAddress(emailAddress);
     }
 
+    @PostMapping("payment")
+    public void payment() {
+        paymentService.processPayment();
+    }
+
 
 }

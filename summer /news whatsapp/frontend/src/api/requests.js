@@ -5,6 +5,11 @@ const get = async ( endpoint,emailAddress ) => {
  const res= await axios.get(myUrl,{params:{emailAddress:emailAddress}});
   return res.data;
 };
+const post = async (endpoint) => {
+  const myUrl= URL_CONSTANTS.BACKEND_URL + endpoint;
+  const res= await axios.post(myUrl);
+  return res.data;
+};
 
-const requests = {get};
+const requests = {get,post};
 export default requests;

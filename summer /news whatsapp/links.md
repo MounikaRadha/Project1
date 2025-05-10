@@ -9,3 +9,5 @@
 - https://medium.com/@bshiramagond/jpa-with-spring-boot-a-comprehensive-guide-with-examples-e07da6f3d385
 - https://www.baeldung.com/spring-data-exists-query
 - https://www.geeksforgeeks.org/spring-boot-sending-email-via-smtp/
+- https://support.stripe.com/questions/stripe-accounts-are-invite-only-in-india
+- https://razorpay.com/docs/payments/create-account/#1-sign-up
