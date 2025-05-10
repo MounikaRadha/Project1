@@ -1,5 +1,7 @@
 package com.RadhaMounika.backend.service;
 
+import com.RadhaMounika.backend.repository.NewsRepository;
+import com.RadhaMounika.backend.repository.UserRepository;
 import com.RadhaMounika.backend.service.NewsSaver.NewsSaverServiceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,6 +15,7 @@ import java.io.InputStreamReader;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class NewsService {
     private final NewsSaverServiceFactory newsSaverServiceFactory;
+    private final NewsRepository newsRepository;
     public String scrapeAndSaveNews() {
         //scrapes news and returns the scraped news as string
         try {
@@ -31,7 +34,7 @@ public class NewsService {
             }
 
             int exitCode = process.waitFor();
-            String news=output.toString().replace("\n", "<br>");
+            String news=output.toString().replace("<br>","\n");
             if(exitCode==0){
                 log.info("saving news...");
                 saveNews(news);
@@ -45,7 +48,9 @@ public class NewsService {
     }
     public void saveNews(String news) {
         newsSaverServiceFactory.getNewsSaverService().saveNews(news);
-
+    }
+    public String getTodayNews(){
+        return newsRepository.findTodayNews();
     }
 }
 

@@ -1,5 +1,6 @@
 package com.RadhaMounika.backend.service.NewsSaver;
 
+
 import com.RadhaMounika.backend.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.core.ApplicationContext;
@@ -21,10 +22,11 @@ public class NewsSaverServiceFactory {
         if ("s3".equalsIgnoreCase(newsSavingMethod)) {
             return s3NewsSaverService;
         }
-        if ("db".equalsIgnoreCase(newsSavingMethod)) {
-            return dbNewsSaverService;
-        }
-        return null; // You may consider throwing an exception here instead
+
+        return dbNewsSaverService;
+
+
     }
 }
+
 

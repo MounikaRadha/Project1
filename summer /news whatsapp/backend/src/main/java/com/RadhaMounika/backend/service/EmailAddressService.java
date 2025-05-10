@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class EmailAddressService {
     private final UserRepository userRepository;
     private final SmtpEmailService smtpEmailService;
+    private final NewsService newsService;
 
     public String addEmailAddress(String userEmailAddress) {
         //add non existing email address to db
@@ -24,8 +25,8 @@ public class EmailAddressService {
         User user = new User();
         user.setUserEmailAddress(userEmailAddress);
         userRepository.save(user);
-        smtpEmailService.sendEmail(userEmailAddress,"dummy body");
-        return "email address added";
+        smtpEmailService.sendEmail(userEmailAddress,newsService.getTodayNews());
+        return "email address added and news sent successfully";
     }
 
     public boolean checkEmailAddressAlreadyExists(String emailAddress) {

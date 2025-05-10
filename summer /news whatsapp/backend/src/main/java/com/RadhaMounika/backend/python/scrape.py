@@ -4,7 +4,7 @@ from urllib.request import urlopen
 
 
 def scrape():
-    print("in scrapeinnnn")
+
     url = "https://www.eenadu.net/world"
     ssl_context = ssl._create_unverified_context()
     page = urlopen(url, context=ssl_context)
@@ -15,9 +15,8 @@ def scrape():
     for i in news1:
         my_data += i.text.strip() + "\n"
 
-    print("News:\n" + my_data)
+    print("News: by radha\n" + my_data)
 
 
 if __name__ == "__main__":
-    print("Running scraper...")
     scrape()
