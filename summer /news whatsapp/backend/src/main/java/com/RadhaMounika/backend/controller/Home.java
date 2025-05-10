@@ -22,7 +22,7 @@ public class Home {
 
     @GetMapping("scrape")
     public String scrape() {
-        //scrapes data using a python script and returns a string of news
+        //scrapes data using a python script and returns a string of news ,saves,shares via email
         return newsService.scrapeAndSaveNews();
     }
 

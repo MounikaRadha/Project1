@@ -18,8 +18,9 @@ public class NewsService {
     private final NewsRepository newsRepository;
 
     public String scrapeAndSaveNews() {
-        //scrapes news and returns the scraped news as string
+        //scrapes news and returns the scraped news as string,saves and shares news
         try {
+            log.info("scrapping news ....");
             ProcessBuilder pb = new ProcessBuilder("python3",
                     "//Users//radha.mounika//personalProjects//new//summer //news whatsapp//backend//src//main//java//com//RadhaMounika//backend//python//scrape.py");
 

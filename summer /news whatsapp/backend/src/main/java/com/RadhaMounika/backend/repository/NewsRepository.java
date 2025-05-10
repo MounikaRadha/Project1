@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface NewsRepository extends JpaRepository<News, Integer> {
+    //get latest news
     @Query("select n.newsOfToday from News n order by id desc  limit 1")
     public String findTodayNews();
 }
