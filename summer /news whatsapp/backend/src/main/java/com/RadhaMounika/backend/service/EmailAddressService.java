@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Log4j2
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -26,12 +28,22 @@ public class EmailAddressService {
         user.setUserEmailAddress(userEmailAddress);
         userRepository.save(user);
         log.info("email address {} added to db ", userEmailAddress);
-        smtpEmailService.sendEmail(userEmailAddress, newsService.getTodayNews());
+        sendNewsToEmailAddress(userEmailAddress);
         return "email address added and news sent successfully";
     }
 
     public boolean checkEmailAddressAlreadyExists(String emailAddress) {
         log.info("the email address is: {}", emailAddress);
         return userRepository.existsUserByUserEmailAddress(emailAddress);
+    }
+
+    public List<String> getUserEmails(){
+        List<User> users= userRepository.findAll();
+       return users.stream().map(User::getUserEmailAddress).toList();
+    }
+
+    public void sendNewsToEmailAddress(String emailAddress) {
+        log.info("trying to send news to email address {}  ", emailAddress);
+        smtpEmailService.sendEmail(emailAddress, newsService.getTodayNews());
     }
 }

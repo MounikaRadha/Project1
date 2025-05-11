@@ -23,7 +23,7 @@
 
 - on payment success and after adding email,need to show it in frontend done
 - remove unnecessary alerts done 
-- code comments done for fronted
-- refactor done for frontend 
+- code comments done
+- refactor done 
 - cron job function to go through the db column and call send email function
-- code cleanup done for frontend
+- code cleanup done 
