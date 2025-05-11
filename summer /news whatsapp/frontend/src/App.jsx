@@ -5,9 +5,6 @@ import "./App.css";
 function App() {
   return (
     <div className="flex flex-col h-screen w-screen">
-      {/* <div className="flex-none">
-        <MyNavbar />
-      </div> */}
       <div className="flex-grow">
         <MyMainDiv />
       </div>

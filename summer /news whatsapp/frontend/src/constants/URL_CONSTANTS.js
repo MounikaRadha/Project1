@@ -1,15 +1,9 @@
-const BACKEND_URL = 'http://localhost:8080'
-const SCRAPE_ENDPOINT = '/scrape'
-const ADD_EMAIL_ENDPOINT = '/addEmailAddress'
-const PAYMENT_ENDPOINT = '/payment'
-const CREATE_ORDER_ENDPOINT = '/createOrder'
-const HANDLE_PAYMENT_ENDPOINT = '/handlePayment'
+const BACKEND_URL = "http://localhost:8080";
+const CREATE_ORDER_ENDPOINT = "/createOrder"; //to create a order using which we open razorpay payment gateway we give email and get order id
+const HANDLE_PAYMENT_ENDPOINT = "/handlePayment"; //once payment gateway is finshed and closed we send the order id payment id ,email address,signature to the backend to verify the payment and send the status message to the frontend
 const URL_CONSTANTS = {
-    BACKEND_URL,
-    SCRAPE_ENDPOINT,
-    ADD_EMAIL_ENDPOINT,
-    PAYMENT_ENDPOINT,
-    CREATE_ORDER_ENDPOINT,
-    HANDLE_PAYMENT_ENDPOINT
+  BACKEND_URL,
+  CREATE_ORDER_ENDPOINT,
+  HANDLE_PAYMENT_ENDPOINT,
 };
 export default URL_CONSTANTS;

@@ -16,3 +16,4 @@
 - https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/ ***
 - https://www.youtube.com/watch?v=SFHbcs-lSio ***
 - https://razorpay.com/docs/payments/payments/test-card-details/(5267 3181 8797 5449)
+- https://dashboard.razorpay.com/app/payments

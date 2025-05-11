@@ -10,40 +10,32 @@ export default function MyEmail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //user entered email address
+    //we send the email address to the backend
+    //use orders api we generate order
+    //with order id we open the razorpay payment gateway
+    //after payment we send the payment details to the backend if it is success
+    //we send the success message to the frontend(in backend we verify payment signature)
     console.log("email address: " + emailAddress);
-    const res = await requests.get(
-      URL_CONSTANTS.CREATE_ORDER_ENDPOINT,
-      emailAddress
-    );
+    const res = await requests.get(URL_CONSTANTS.CREATE_ORDER_ENDPOINT, {
+      emailAddress: emailAddress,
+    });
     const options = {
-      key: import.meta.env.VITE_RAZOR_KEY_ID, // Enter the Key ID generated from the Dashboard
-      amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      key: import.meta.env.VITE_RAZOR_KEY_ID,
+      amount: "50000000",
       currency: "INR",
-      name: "Acme Corp", //your business name
+      name: "News by Radha",
       description: "Test Transaction",
-      image: "https://example.com/your_logo",
-      order_id: res.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      handler: function (response) {
-
-        requests.post(URL_CONSTANTS.HANDLE_PAYMENT_ENDPOINT, {
+      image: "https://rguktn.ac.in/assets_new/images/logo.png",
+      order_id: res.id,
+      handler: async function (response) {
+        const res = await requests.post(URL_CONSTANTS.HANDLE_PAYMENT_ENDPOINT, {
           razorpayPaymentId: response.razorpay_payment_id,
           razorpayOrderId: response.razorpay_order_id,
           razorpaySignature: response.razorpay_signature,
           emailAddress: emailAddress,
         });
-        // requests.get(URL_CONSTANTS.HANDLE_PAYMENT_ENDPOINT)
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-      },
-      prefill: {
-        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-        name: "Gaurav Kumar", //your customer's name
-        email: "gaurav.kumar@example.com",
-        contact: "9000090000", //Provide the customer's phone number for better conversion rates
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
+        alert(res);
       },
       theme: {
         color: "#3399cc",
@@ -51,13 +43,8 @@ export default function MyEmail() {
     };
     const rzp1 = new window.Razorpay(options);
     rzp1.on("payment.failed", function (response) {
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
+      console.log(response.error.code); // The error code as returned by Razorpay
+      console.log(response.error.description); // The error description
     });
     rzp1.open();
     e.preventDefault();
@@ -83,7 +70,7 @@ export default function MyEmail() {
             id="emailAddress"
             placeholder="Please enter email Address"
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
