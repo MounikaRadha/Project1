@@ -16,6 +16,17 @@ public class DBNewsSaverService implements NewsSaverService {
     @Override
     public void saveNews(String news) {
         log.info("saving news in db using db news saver service   ...");
+        Integer count = newsRepository.findCount();
+        log.info("checking the count {}", count);
+        if (count > 0) {
+            log.info("news object already exists");
+
+            News existingNews = newsRepository.findAll().getFirst();
+            existingNews.setNewsOfToday(news);
+            newsRepository.save(existingNews);
+            return;
+        }
+        log.info("news object is empty so creating new one");
         News newsObj = new News();
         newsObj.setNewsOfToday(news);
         newsRepository.save(newsObj);

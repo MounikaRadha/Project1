@@ -8,4 +8,7 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
     //get latest news
     @Query("select n.newsOfToday from News n order by id desc  limit 1")
     public String findTodayNews();
+    //get count of news
+    @Query("select count(n.newsOfToday) from News n ")
+    public Integer findCount();
 }

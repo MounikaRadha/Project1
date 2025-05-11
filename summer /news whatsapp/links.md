@@ -17,3 +17,12 @@
 - https://www.youtube.com/watch?v=SFHbcs-lSio ***
 - https://razorpay.com/docs/payments/payments/test-card-details/(5267 3181 8797 5449)
 - https://dashboard.razorpay.com/app/payments
+## aws
+- https://medium.com/boltops/gentle-introduction-to-how-aws-ecs-works-with-example-tutorial-cea3d27ce63d
+- security group - attached to a resource (ec2,..?)https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html
+- vpc
+- subnet
+- internet gateway
+- subnet route table - https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html
+- nat gateway vs internet gateway https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6
+- https://repost.aws/questions/QUqGLrltAjSDeasVNx_oIDNQ/what-is-the-purpose-of-the-ecs-family-parameter task definition family
