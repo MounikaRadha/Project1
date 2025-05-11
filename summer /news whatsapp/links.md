@@ -14,3 +14,4 @@
 - https://www.youtube.com/watch?v=Qph08VLmPhc
 - https://stackoverflow.com/questions/67448507/razorpay-errors-badrequesterror-the-amount-must-be-an-integer
 - https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/ ***
+- https://www.youtube.com/watch?v=SFHbcs-lSio ***

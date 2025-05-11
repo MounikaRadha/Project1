@@ -21,7 +21,7 @@ public class RazorPayService {
     private  String KEY_SECRET;
     public String createOrderURL() throws RazorpayException {
 
-        RazorpayClient razorpayClient= new RazorpayClient(KEY_ID,KEY_SECRET);
+        RazorpayClient razorpayClient= new RazorpayClient(System.getenv("KEY_ID"),System.getenv("KEY_SECRET"));
         JSONObject orderRequest= new JSONObject();
         orderRequest.put("amount",10000);
         orderRequest.put("currency","INR");

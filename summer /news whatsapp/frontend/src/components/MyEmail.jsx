@@ -1,7 +1,6 @@
 import { useState } from "react";
 import requests from "../api/requests";
 import URL_CONSTANTS from "../constants/URL_CONSTANTS";
-
 export default function MyEmail() {
   const [emailAddress, setemailAddress] = useState("");
 
@@ -17,7 +16,7 @@ export default function MyEmail() {
       emailAddress
     );
     const options = {
-      key: "redacted", // Enter the Key ID generated from the Dashboard
+      key: import.meta.env.VITE_RAZOR_KEY_ID, // Enter the Key ID generated from the Dashboard
       amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Acme Corp", //your business name
