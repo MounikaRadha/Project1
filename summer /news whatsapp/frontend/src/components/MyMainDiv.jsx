@@ -1,5 +1,4 @@
 import MyEmail from "./MyEmail";
-import MyPayment from "./MyPayment";
 
 export default function MyMainDiv() {
   return (

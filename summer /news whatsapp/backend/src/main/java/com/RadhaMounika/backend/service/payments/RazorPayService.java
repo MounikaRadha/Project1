@@ -25,11 +25,14 @@ public class RazorPayService {
     @Value("${spring.razorpay.KEY_SECRET}")
     private String KEY_SECRET;
 
-    public String createOrderURL() throws RazorpayException {
+    @Value("${spring.razorpay.amount}")
+    private String amount;
 
+    public String createOrderURL() throws RazorpayException {
+        log.info("order url generation request received ...");
         RazorpayClient razorpayClient = new RazorpayClient(System.getenv("KEY_ID"), System.getenv("KEY_SECRET"));
         JSONObject orderRequest = new JSONObject();
-        orderRequest.put("amount", 10000);
+        orderRequest.put("amount", amount);
         orderRequest.put("currency", "INR");
         Order order = razorpayClient.orders.create(orderRequest);
         log.info("order is {}", order);
@@ -39,6 +42,7 @@ public class RazorPayService {
     public String handlePayment(PaymentResponseDTO paymentResponseDTO) throws RazorpayException {
         log.info("payment response dto is {}", paymentResponseDTO);
         if (isPaymentValid(paymentResponseDTO)) {
+            log.info("payment is valid");
             return handleSuccessfulPayment(paymentResponseDTO);
         }
         return handleCheatingPayment();
@@ -50,8 +54,8 @@ public class RazorPayService {
     }
 
     private String handleSuccessfulPayment(PaymentResponseDTO paymentResponseDTO) {
-        emailAddressService.addEmailAddress(paymentResponseDTO.getEmailAddress());
-        return "successful payment";
+        return emailAddressService.addEmailAddress(paymentResponseDTO.getEmailAddress());
+
     }
 
     public boolean isPaymentValid(PaymentResponseDTO paymentResponseDTO) throws RazorpayException {

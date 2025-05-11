@@ -27,11 +27,14 @@ public class Home {
         return newsService.scrapeAndSaveNews();
     }
 
-    @GetMapping("addEmailAddress")
-    public String addEmailAddress(@RequestParam String emailAddress) {
-        //users email address will come here we add it to db if not exists and send email
-        return emailAddressService.addEmailAddress(emailAddress);
-    }
+    /**
+     * commenting out add email address as the service method will be called once payment finishes successfully
+     * //    @GetMapping("addEmailAddress")
+     * public String addEmailAddress(@RequestParam String emailAddress) {
+     * //users email address will come here we add it to db if not exists and send email
+     * return emailAddressService.addEmailAddress(emailAddress);
+     * }
+     **/
 
     @GetMapping("createOrder")
     public String createOrder() throws RazorpayException {
@@ -44,14 +47,8 @@ public class Home {
     public String handlePayment(@RequestBody PaymentResponseDTO paymentResponseDTO) throws RazorpayException {
         //takes the response after user pays
         //verifies the signature
-        //make user payment completed
+        //will add user email to db and share news
         return razorPayService.handlePayment(paymentResponseDTO);
     }
-
-    @GetMapping("handlePayment")
-    public String handlePayment() {
-        return "handle payment invodked";
-    }
-
 
 }

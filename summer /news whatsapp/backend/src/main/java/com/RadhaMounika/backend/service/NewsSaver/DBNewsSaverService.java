@@ -15,9 +15,10 @@ public class DBNewsSaverService implements NewsSaverService {
 
     @Override
     public void saveNews(String news) {
-        log.info("saving news in db ...");
+        log.info("saving news in db using db news saver service   ...");
         News newsObj = new News();
         newsObj.setNewsOfToday(news);
         newsRepository.save(newsObj);
+        log.info("saved news in db using db news saver service  ...");
     }
 }

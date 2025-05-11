@@ -18,19 +18,20 @@ public class EmailAddressService {
     public String addEmailAddress(String userEmailAddress) {
         //add non existing email address to db
         //send email
-        log.info("the email address is: " + userEmailAddress);
+        log.info("trying to add email address {} to db ", userEmailAddress);
         if (this.checkEmailAddressAlreadyExists(userEmailAddress)) {
             return " email address  already exists";
         }
         User user = new User();
         user.setUserEmailAddress(userEmailAddress);
         userRepository.save(user);
+        log.info("email address {} added to db ", userEmailAddress);
         smtpEmailService.sendEmail(userEmailAddress, newsService.getTodayNews());
         return "email address added and news sent successfully";
     }
 
     public boolean checkEmailAddressAlreadyExists(String emailAddress) {
-        log.info("thee email address is: " + emailAddress);
+        log.info("the email address is: {}", emailAddress);
         return userRepository.existsUserByUserEmailAddress(emailAddress);
     }
 }

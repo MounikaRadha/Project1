@@ -1,4 +1,4 @@
-import MyNavbar from "./components/MyNavbar";
+
 import MyFooter from "./components/MyFooter";
 import MyMainDiv from "./components/MyMainDiv";
 import "./App.css";
