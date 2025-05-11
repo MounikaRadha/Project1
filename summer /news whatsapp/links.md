@@ -11,3 +11,6 @@
 - https://www.geeksforgeeks.org/spring-boot-sending-email-via-smtp/
 - https://support.stripe.com/questions/stripe-accounts-are-invite-only-in-india
 - https://razorpay.com/docs/payments/create-account/#1-sign-up
+- https://www.youtube.com/watch?v=Qph08VLmPhc
+- https://stackoverflow.com/questions/67448507/razorpay-errors-badrequesterror-the-amount-must-be-an-integer
+- https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/ ***

@@ -2,6 +2,8 @@ package com.RadhaMounika.backend.controller;
 
 import com.RadhaMounika.backend.service.EmailAddressService;
 import com.RadhaMounika.backend.service.NewsService;
+import com.RadhaMounika.backend.service.payments.RazorPayService;
+import com.razorpay.RazorpayException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Home {
     private final NewsService newsService;
     private final EmailAddressService emailAddressService;
+    private final RazorPayService razorPayService;
 
     @GetMapping("/home")
     public String home() {
@@ -32,9 +35,10 @@ public class Home {
         return emailAddressService.addEmailAddress(emailAddress);
     }
 
-    @PostMapping("payment")
-    public void payment() {
-        paymentService.processPayment();
+    @GetMapping("createOrder")
+    public String createOrder() throws RazorpayException {
+        //generate checkout url using razor pay orders api
+        return razorPayService.createOrderURL();
     }
 
 

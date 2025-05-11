@@ -29,6 +29,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.33'//err to create entity manager
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'//to extend in repository
 	implementation 'org.springframework.boot:spring-boot-starter-mail:3.4.4'
+	implementation 'com.razorpay:razorpay-java:1.4.3'
 }
 
 tasks.named('test') {

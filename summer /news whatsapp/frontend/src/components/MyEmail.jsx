@@ -9,10 +9,51 @@ export default function MyEmail() {
     setemailAddress(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("email address: " + emailAddress);
-    requests.get(URL_CONSTANTS.ADD_EMAIL_ENDPOINT, emailAddress);
+    const res = await requests.get(
+      URL_CONSTANTS.CREATE_ORDER_ENDPOINT,
+      emailAddress
+    );
+    const options = {
+      key: "redacted", // Enter the Key ID generated from the Dashboard
+      amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Acme Corp", //your business name
+      description: "Test Transaction",
+      image: "https://example.com/your_logo",
+      order_id: res.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+        name: "Gaurav Kumar", //your customer's name
+        email: "gaurav.kumar@example.com",
+        contact: "9000090000", //Provide the customer's phone number for better conversion rates
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+    const rzp1 = new window.Razorpay(options);
+    rzp1.on("payment.failed", function (response) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+    });
+    rzp1.open();
+    e.preventDefault();
   };
 
   return (
@@ -27,7 +68,7 @@ export default function MyEmail() {
 
         <div className="space-y-14">
           <label htmlFor="emailAddress" className="block">
-           Email address:
+            Email address:
           </label>
           <input
             type="text"
@@ -43,7 +84,7 @@ export default function MyEmail() {
           type="submit"
           className="w-full px-4 py-2 rounded-lg font-semibold"
         >
-          Submit
+          Submit and pay
         </button>
       </form>
     </div>
