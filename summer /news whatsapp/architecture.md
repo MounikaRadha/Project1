@@ -15,3 +15,7 @@
 - get news also 2 ways
 - send news a separate function 
 - we call send news from add email address function and in a cron/scheduler
+
+
+- a backend controller which would take the payment details from frontend verify the signature and save the user details as completed
+- 

@@ -24,6 +24,14 @@ export default function MyEmail() {
       image: "https://example.com/your_logo",
       order_id: res.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: function (response) {
+
+        requests.post(URL_CONSTANTS.HANDLE_PAYMENT_ENDPOINT, {
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpayOrderId: response.razorpay_order_id,
+          razorpaySignature: response.razorpay_signature,
+          emailAddress: emailAddress,
+        });
+        // requests.get(URL_CONSTANTS.HANDLE_PAYMENT_ENDPOINT)
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);

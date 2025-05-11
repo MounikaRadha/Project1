@@ -1,14 +1,12 @@
 package com.RadhaMounika.backend.controller;
 
+import com.RadhaMounika.backend.DTO.PaymentResponseDTO;
 import com.RadhaMounika.backend.service.EmailAddressService;
 import com.RadhaMounika.backend.service.NewsService;
 import com.RadhaMounika.backend.service.payments.RazorPayService;
 import com.razorpay.RazorpayException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
@@ -39,6 +37,20 @@ public class Home {
     public String createOrder() throws RazorpayException {
         //generate checkout url using razor pay orders api
         return razorPayService.createOrderURL();
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("handlePayment")
+    public String handlePayment(@RequestBody PaymentResponseDTO paymentResponseDTO) throws RazorpayException {
+        //takes the response after user pays
+        //verifies the signature
+        //make user payment completed
+        return razorPayService.handlePayment(paymentResponseDTO);
+    }
+
+    @GetMapping("handlePayment")
+    public String handlePayment() {
+        return "handle payment invodked";
     }
 
 
