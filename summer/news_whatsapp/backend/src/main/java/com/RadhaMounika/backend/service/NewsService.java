@@ -19,10 +19,11 @@ public class NewsService {
     private final NewsRepository newsRepository;
 
     public String scrapeAndSaveNews() {
+        String news = "";
         //scrapes news and returns the scraped news as string,saves and shares news
         try {
             log.info("scrapping news ....");
-           File fileObj=new File("./src/main/java/com/RadhaMounika/backend/service/scrape.py");
+           File fileObj=new File("./scrape.py");
             log.info("Running script at: " + fileObj.getAbsolutePath());
 
             ProcessBuilder pb = new ProcessBuilder("python3", fileObj.getAbsolutePath());
@@ -37,9 +38,10 @@ public class NewsService {
             while ((line = reader.readLine()) != null) {
                 output.append(line).append("\n");
             }
-
+            log.info("output.string is {}and wait for process", output);
             int exitCode = process.waitFor();
-            String news = output.toString().replace("<br>", "\n");
+            news = output.toString().replace("<br>", "\n");
+            log.info("Exit code: {}news is {}", exitCode, news);
             if (exitCode == 0) {
                 log.info("saving news...");
                 saveNews(news);
@@ -48,7 +50,7 @@ public class NewsService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "Exception occurred: " + e.getMessage();
+            return "Exception occurred: " + e.getMessage()+news;
         }
     }
 
