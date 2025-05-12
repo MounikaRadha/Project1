@@ -26,3 +26,11 @@
 - subnet route table - https://docs.aws.amazon.com/vpc/latest/userguide/subnet-route-tables.html
 - nat gateway vs internet gateway https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6
 - https://repost.aws/questions/QUqGLrltAjSDeasVNx_oIDNQ/what-is-the-purpose-of-the-ecs-family-parameter task definition family
+## dockerizing
+- https://www.baeldung.com/dockerizing-spring-boot-application
+- docker run -p 8080:8080 m0wn1ka/news-app-backend:latest
+- docker buildx build -t m0wn1ka/news-app-backend .
+- ./gradlew bootJar
+- docker push m0wn1ka/news-app-backend
+# use ful link 
+https://cloud.theodo.com/en/blog/essential-container-error-ecs

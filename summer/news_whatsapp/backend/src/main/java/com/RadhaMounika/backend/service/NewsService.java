@@ -1,5 +1,6 @@
 package com.RadhaMounika.backend.service;
-
+import java.io.File;
+import java.nio.file.Paths;
 import com.RadhaMounika.backend.repository.NewsRepository;
 import com.RadhaMounika.backend.service.NewsSaver.NewsSaverServiceFactory;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,10 @@ public class NewsService {
         //scrapes news and returns the scraped news as string,saves and shares news
         try {
             log.info("scrapping news ....");
-            ProcessBuilder pb = new ProcessBuilder("python3",
-                    "//Users//radha.mounika//personalProjects//new//summer //news whatsapp//backend//src//main//java//com//RadhaMounika//backend//python//scrape.py");
+           File fileObj=new File("./src/main/java/com/RadhaMounika/backend/service/scrape.py");
+            log.info("Running script at: " + fileObj.getAbsolutePath());
+
+            ProcessBuilder pb = new ProcessBuilder("python3", fileObj.getAbsolutePath());
 
             pb.redirectErrorStream(true);
             Process process = pb.start();

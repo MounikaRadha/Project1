@@ -16,7 +16,7 @@ public class Home {
     private final EmailAddressService emailAddressService;
     private final RazorPayService razorPayService;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "helllllo world";
     }

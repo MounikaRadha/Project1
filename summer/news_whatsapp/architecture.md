@@ -27,3 +27,38 @@
 - refactor done 
 - cron job function to go through the db column and call send email function
 - code cleanup done 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## deployment
+- use aws rds database
+- change python file path in backend 
+- need to find a way so that less cost for frontend and backend 
+- regulary trigger a method to scrape and send news

@@ -30,3 +30,8 @@
 - https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html
 - A task definition is a blueprint for your application
 - A task is the instantiation of a task definition within a cluster
+- ## target groups load balancers
+- A target group is a logical grouping of targets (e.g., EC2 instances) that you want the load balancer to send traffic to.
+
+- When you create a listener rule on the load balancer (for example, forward traffic on port 80), you specify a target group as the destination for that traffic.
+- CS automatically registers and deregisters the task's private IP with the target group whenever tasks are launched or terminated.
