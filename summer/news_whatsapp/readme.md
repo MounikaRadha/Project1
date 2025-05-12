@@ -16,3 +16,5 @@
 - shares it via email to the subscribed users
 - when user adds email,they will be asked to pay a rupee
 - once payment finishes ,user will be added to subscribers list
+## news in email
+<img width="656" alt="image" src="https://github.com/user-attachments/assets/66223e1c-6502-4386-ba0f-5c95cb21cf21" />
