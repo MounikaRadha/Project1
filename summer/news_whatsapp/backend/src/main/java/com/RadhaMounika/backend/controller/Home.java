@@ -16,11 +16,13 @@ public class Home {
     private final EmailAddressService emailAddressService;
     private final RazorPayService razorPayService;
 
+
     @GetMapping("/")
     public String home() {
         return "helllllo world";
     }
 
+    @CrossOrigin(origins = "https://project1-iota-flame.vercel.app")
     @GetMapping("scrape")
     public String scrape() {
         //scrapes data using a python script and returns a string of news ,saves,shares via email
@@ -37,12 +39,13 @@ public class Home {
      **/
 
     @GetMapping("createOrder")
+    @CrossOrigin(origins = "https://project1-iota-flame.vercel.app")
     public String createOrder() throws RazorpayException {
         //generate checkout url using razor pay orders api
         return razorPayService.createOrderURL();
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "https://project1-iota-flame.vercel.app")
     @PostMapping("handlePayment")
     public String handlePayment(@RequestBody PaymentResponseDTO paymentResponseDTO) throws RazorpayException {
         //takes the response after user pays
