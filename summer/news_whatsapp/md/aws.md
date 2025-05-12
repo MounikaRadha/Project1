@@ -35,3 +35,5 @@
 
 - When you create a listener rule on the load balancer (for example, forward traffic on port 80), you specify a target group as the destination for that traffic.
 - CS automatically registers and deregisters the task's private IP with the target group whenever tasks are launched or terminated.
+## connect to db from terninal
+- mysql -h fderdxfe-fadsfeds-1.cdefswfsewsuisoefwfeswfoefesdgesgg8u.*-1.rds.amazonaws.com -P 3306 -u root -p 

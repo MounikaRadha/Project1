@@ -63,3 +63,6 @@
 - initial databasae name news
 - Cannot create a publicly accessible DBInstance. The specified VPC does not support DNS resolution, DNS hostnames, or both. Update the VPC and then try again
 - https://stackoverflow.com/questions/62875709/the-specified-vpc-does-not-support-dns-resolution-dns-hostnames-or-both-updat
+## route 53
+- already a domain is registerd and hosted zone is created
+- now news.radha-mounika.com ->alias to load balancer in a given region 
