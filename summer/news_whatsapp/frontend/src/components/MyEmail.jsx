@@ -78,7 +78,7 @@ export default function MyEmail() {
           type="submit"
           className="w-full px-4 py-2 rounded-lg font-semibold"
         >
-          Submit and pay
+          Submit and Pay
         </button>
       </form>
     </div>
