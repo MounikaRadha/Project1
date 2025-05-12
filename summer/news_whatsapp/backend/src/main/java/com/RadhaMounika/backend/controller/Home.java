@@ -1,6 +1,7 @@
 package com.RadhaMounika.backend.controller;
 
 import com.RadhaMounika.backend.DTO.PaymentResponseDTO;
+import com.RadhaMounika.backend.service.CronService;
 import com.RadhaMounika.backend.service.EmailAddressService;
 import com.RadhaMounika.backend.service.NewsService;
 import com.RadhaMounika.backend.service.payments.RazorPayService;
@@ -15,6 +16,7 @@ public class Home {
     private final NewsService newsService;
     private final EmailAddressService emailAddressService;
     private final RazorPayService razorPayService;
+    private final CronService cronService;
 
 
     @GetMapping("/")
@@ -28,7 +30,10 @@ public class Home {
         //scrapes data using a python script and returns a string of news ,saves,shares via email
         return newsService.scrapeAndSaveNews();
     }
-
+    @GetMapping("cron78784544")
+    public void cron7878() {
+        cronService.scheduledRun();
+    }
     /**
      * commenting out add email address as the service method will be called once payment finishes successfully
      * //    @GetMapping("addEmailAddress")
