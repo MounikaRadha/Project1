@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-const Greetings = () => {
+const MyInputForm = () => {
   const [businessType, setBusinessType] = useState("");
   const [targetAudience, setTargetAudience] = useState("");
   const [keySellingPoints, setKeySellingPoints] = useState("");
@@ -63,4 +63,4 @@ const Greetings = () => {
   );
 };
 
-export default Greetings;
+export default MyInputForm;
